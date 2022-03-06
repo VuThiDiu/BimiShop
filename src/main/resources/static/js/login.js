@@ -51,7 +51,8 @@ LoginController.prototype.callAPILogin = function(username, password){
                 dataType:"application/json"
             }).fail(function(response){
                 if(response.status==200){
-                    localStorage.setItem("loginResponse",response.body );
+                    console.log(response);
+                    localStorage.setItem("loginResponse",response.responseText );
                     window.location.replace('/home');
                 }else{
                     alert("user not existed or password is wrong");
