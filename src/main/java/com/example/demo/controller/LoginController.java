@@ -35,20 +35,20 @@ public class LoginController {
     @GetMapping(value = {"/login", "/", ""})
     public String getLoginForm( Model model, HttpServletRequest httpServletRequest){
         model.addAttribute("loginForm", new UserLogin());
-        model.addAttribute("url", WebUtils.buildUrlForPaging(httpServletRequest, "/login"));
+//        model.addAttribute("url", WebUtils.buildUrlForPaging(httpServletRequest, "/login"));
         return "login";
     }
     // ok ne
-    @PostMapping(value = "/login")
+    @PostMapping(value = "/login", produces = "application/json")
     public ResponseEntity authentication(@ModelAttribute("loginForm") UserLogin user){
         try{
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            user.getUserName(),
+                            user.getUsername(),
                             user.getPassword()
                     )
             );
-            User user1 = (User) userService.getUserByUserName(user.getUserName());
+            User user1 = (User) userService.getUserByUserName(user.getUsername());
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = jwtTokenProvider.generateToken((CustomUserDetails) authentication.getPrincipal());
             return  new ResponseEntity(new LoginResponse(jwt,  user1.getId(),user1.getUsername()), HttpStatus.OK);

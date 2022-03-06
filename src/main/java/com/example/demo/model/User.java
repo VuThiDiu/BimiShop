@@ -17,10 +17,8 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
+    @Column(unique = true)
+    private String phonenumber;
 
     private String password;
-
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//    private List<TodoDetail> todolist;
-
 }

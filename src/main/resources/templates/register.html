@@ -3,85 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <style>
-        .container{
-            border: 3px solid #f1f1f1;
-            width: fit-content;
-            margin: auto;
-        }
-        input[type=text], input[type=password]{
-            width: 100%;
-            padding: 12px  12px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #04AA6D;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-        button:hover {
-            opacity: 0.8;
-        }
-        .imgcontainer {
-            text-align: center;
-            margin: 24px 0 12px 0;
-        }
-        img.avatar{
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-        }
-    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
 </head>
 <body>
-    <div>
-        <h2 style="text-align: center; font-size: 40px; font-family: 'Times New Roman', Times, serif;">Register</h2>
-        <div class="container">
-        <div class="imgcontainer">
-            <img src="https://media.istockphoto.com/photos/check-off-a-todo-list-with-a-black-pen-picture-id1212554542?k=6&m=1212554542&s=612x612&w=0&h=dAEORdxXuwjVzkuSvnqNfZaCD1mNq9dupvQzqyKooh8=" alt="Avatar" class="avatar">
-          </div>
-        <div class="container">
-            <label ><b>UserName</b></label>
-            <input type="text" placeholder="Enter Your Name" id="user" required>
-            <label ><b>PassWord</b></label>
-            <input type="password" placeholder="Enter Your Password" id="pass" required>
-            <button type="submit" >Register</button>
+<div class="container bootstrap snippets bootdey">
+    <div class="header">
+        <ul class="nav nav-pills pull-right">
+            <li class="inactive"><a href="/login">Login</a></li>
+            <li class="active"><a href="/register">Register</a></li>
+        </ul>
+        <h3 class="text-muted prj-name">BiMi Shop</h3>
+    </div>
+
+    <div class="jumbotron text-center" style="min-height:400px;height:auto;">
+        <div class="col-md-10 col-md-offset-2">
+            <form class="form-horizontal" role="form" th:object="${registerForm}" th:action="@{/register}" method="post" >
+                <div class="form-group text-center">
+                    <div class="col-sm-10 reg-icon">
+                        <span class="fa fa-user fa-3x"> Đăng ký</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="userName" placeholder="User Name" required th:field="*{username}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="password" placeholder="Password" required th:field="*{password}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="confirmPass" placeholder="Confirm Password" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="phoneNumber" placeholder="PhoneNumber" required th:field="*{phonenumber}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <button type="button" class="btn btn-info" >
+                            <span class="glyphicon glyphicon-share-alt"></span>
+                            Register
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-    </div>
-    
+</div>
 </body>
-
-<script>
-            $(document).ready(function(){
-            $("button").click(function(){
-            var username = $("#user").val();
-            var password = $("#pass").val();
-            $.ajax({
-                method:"post",
-                url: "http://localhost:8080/register",
-                data:{"username": username, "password": password},
-                dataType:"application/json"
-            }).fail(function(response){
-                if(response.status==200){
-                    alert("Account is created successfully!");
-                    window.location.replace("/login");
-                }else{
-                    alert("Error");
-                    window.location.reload();
-                }
-                
-            });
-        });
-    });
-
-</script>
-</html>
+<script type="text/javascript" th:src="@{/js/register.js}"></script>
