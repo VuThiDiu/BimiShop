@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/selling.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/selling.js}"></script>
+    <script type="text/javascript" th:src="@{/js/common/base.js}"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="container bootstrap snippets bootdey">
+        <div class="col-md-12">
+            <div class="header">
+                <ul class="nav nav-pills pull-right">
+                    <li class="inactive"><a id="btn-popular">Popular</a></li>
+                    <li class="inactive"><a id="btn-newest">Newest</a></li>
+                    <li class="inactive"><a id="btn-bestseller">Best-Seller</a></li>
+                    <li class="active"><a id="btn-sale">Selling</a></li>
+                    <li class="inactive"><a id="btn-account">Account</a></li>
+                </ul>
+                <h3 class="text-muted Fprj-name">BiMi Shop</h3>
+            </div>
+            <hr>
+            <div class="container">
+                <input type="file" id="file-input" accept="image/png, image/jpeg, image/jpg" multiple>
+                <label for="file-input">
+                    <i class="fas fa-upload"></i>
+                    &nbsp;
+                    Choose a photo
+                </label>
+                <p id="num-of-files" >No Files Chosen</p>
+                <div id="images"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>

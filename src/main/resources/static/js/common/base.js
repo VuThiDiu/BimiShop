@@ -20,10 +20,12 @@ function BaseController(){
         $("#btn-bestseller").click(function(){
                 alert("Updating");
         });
-        $("#btn-sell").click(function(){
-                alert("Updating");
+        $("#btn-sale").click(function(){
+                BaseController.prototype.SalePageRequest(loginResponse);
         });
 }
+
+
 BaseController.prototype.HomePageRequest =  function(loginResponse){
         $.ajax({
             method:"get",
@@ -38,7 +40,20 @@ BaseController.prototype.HomePageRequest =  function(loginResponse){
             alert('Error');
         });
 };
-
+BaseController.prototype.SalePageRequest =  function(loginResponse){
+        $.ajax({
+            method:"get",
+            url: `http://localhost:8080/api/sale/${loginResponse.id}`,
+            headers:{
+                "Authorization": `Bearer ${loginResponse.accessToken}`,
+            }
+        }).done(function(){
+            window.location.replace(`/api/sale/${loginResponse.id}`);
+        })
+        .fail(function(response){
+            alert('Error');
+        });
+};
 BaseController.prototype.AccountPageRequest =  function(loginResponse){
         $.ajax({
             method:"get",
