@@ -28,8 +28,8 @@ public class UserService implements UserDetailsService {
     public User getUserByUserName(String userName){
         return userRepository.findByUserName(userName);
     }
-    public UserDetails loadUserById(Long userId) {
-        User user = userRepository.getById(userId);
+    public UserDetails loadUserById(String userId) {
+        User user = userRepository.findUserById(userId).orElseThrow( ()-> new ResourceNotFoundException("not found", "id", userId));
         return new CustomUserDetails(user);
     }
     public User createNewUser(User user){

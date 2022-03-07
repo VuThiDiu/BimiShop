@@ -7,103 +7,36 @@
     <link rel="stylesheet" th:href="@{/css/account.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/account.js}"></script>
+    <script type="text/javascript" th:src="@{/js/common/base.js}"></script>
 </head>
 <body>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="container bootstrap snippets bootdey">
         <div class="col-md-12">
-            <h2 class="text-primary">
-                <i class="fa fa-tachometer"></i>
-                Home menu
-            </h2>
+            <div class="header">
+                <ul class="nav nav-pills pull-right">
+                    <li class="inactive"><a id="btn-popular">Popular</a></li>
+                    <li class="inactive"><a id="btn-newest">Newest</a></li>
+                    <li class="inactive"><a id="btn-bestseller">Best-Seller</a></li>
+                    <li class="inactive"><a id="btn-sell">Sell</a></li>
+                    <li class="active"><a id="btn-account">Account</a></li>
+                </ul>
+                <h3 class="text-muted Fprj-name">BiMi Shop</h3>
+            </div>
             <hr>
             <div class="row">
-                <div class="col-md-3">
-                    <div class="panel panel-info ">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <i class="fa fa-calculator fa-5x"></i>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <p class="announcement-heading">&nbsp;</p>
-                                    <p class="announcement-text">Math</p>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer announcement-bottom">
-                                <div class="row">
-                                    <div class="col-xs-6">View</div>
-                                    <div class="col-xs-6 text-right">
-                                        <i class="fa fa-arrow-circle-right"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="panel panel-success ">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <i class="fa fa-leanpub fa-5x"></i>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <p class="announcement-heading">&nbsp;</p>
-                                    <p class="announcement-text">Language</p>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer announcement-bottom">
-                                <div class="row">
-                                    <div class="col-xs-6">View</div>
-                                    <div class="col-xs-6 text-right">
-                                        <i class="fa fa-arrow-circle-right"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="panel panel-warning ">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <i class="fa fa-flask fa-5x"></i>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <p class="announcement-heading">&nbsp;</p>
-                                    <p class="announcement-text">Science</p>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer announcement-bottom">
-                                <div class="row">
-                                    <div class="col-xs-6">View</div>
-                                    <div class="col-xs-6 text-right">
-                                        <i class="fa fa-arrow-circle-right"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="panel panel-danger ">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <i class="fa fa-video-camera fa-5x"></i>
+                                    <i class="fa fa-heart fa-5x"></i>
                                 </div>
                                 <div class="col-xs-6 text-right">
                                     <p class="announcement-heading">&nbsp;</p>
-                                    <p class="announcement-text">Video</p>
+                                    <p class="announcement-text">Yêu thích</p>
                                 </div>
                             </div>
                         </div>
@@ -111,6 +44,106 @@
                             <div class="panel-footer announcement-bottom">
                                 <div class="row">
                                     <div class="col-xs-6">View</div>
+                                    <div class="col-xs-6 text-right">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-success ">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    <p class="announcement-heading">&nbsp;</p>
+                                    <p class="announcement-text">Giỏ hàng</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer announcement-bottom">
+                                <div class="row">
+                                    <div class="col-xs-6">View</div>
+                                    <div class="col-xs-6 text-right">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-warning ">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <i class="fa fa-history fa-5x"></i>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    <p class="announcement-heading">&nbsp;</p>
+                                    <p class="announcement-text">Lịch sử mua hàng</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer announcement-bottom">
+                                <div class="row">
+                                    <div class="col-xs-6">View</div>
+                                    <div class="col-xs-6 text-right">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-info ">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <i class="fa fa-sellsy fa-5x"></i>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    <p class="announcement-heading">&nbsp;</p>
+                                    <p class="announcement-text">Lịch sử bán hàng</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer announcement-bottom">
+                                <div class="row">
+                                    <div class="col-xs-6">View</div>
+                                    <div class="col-xs-6 text-right">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4" id="btn-logout">
+                    <div class="panel panel-primary ">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <i class="fa fa-sign-out fa-5x"></i>
+                                </div>
+                                <div class="col-xs-6 text-right">
+                                    <p class="announcement-heading">&nbsp;</p>
+                                    <p class="announcement-text">Logout</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer announcement-bottom">
+                                <div class="row">
+                                    <div class="col-xs-6">Logout</div>
                                     <div class="col-xs-6 text-right">
                                         <i class="fa fa-arrow-circle-right"></i>
                                     </div>
@@ -124,4 +157,3 @@
     </div>
 </div>
 </body>
-<script type="text/javascript" th:src="@{/js/account.js}"></script>

@@ -53,7 +53,7 @@ LoginController.prototype.callAPILogin = function(username, password){
                 if(response.status==200){
                     console.log(response);
                     localStorage.setItem("loginResponse",response.responseText );
-                    window.location.replace('/home');
+                    window.location.replace('/api/home');
                 }else{
                     alert("user not existed or password is wrong");
                 }

@@ -4,9 +4,11 @@ package com.example.demo.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class AccountPage {
+@RequestMapping("/api")
+public class AccountController {
     @GetMapping("/account/{id}")
     public String getHomePage(@PathVariable("id") String id){
         return "account";

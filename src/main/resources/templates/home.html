@@ -7,30 +7,14 @@
     <link rel="stylesheet" th:href="@{/css/home.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/home.js}"></script>
+    <script type="text/javascript" th:src="@{/js/common/base.js}"></script>
 </head>
 <body>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
     <div class="row">
         <div class="col-sm-4 col-md-3">
-
-
-<!--            <form>-->
-<!--                <div class="well">-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-sm-12">-->
-<!--                            <div class="input-group">-->
-<!--                                <input type="text" class="form-control" placeholder="Search products...">-->
-<!--                                <span class="input-group-btn">-->
-<!--                  <button class="btn btn-primary" type="submit">-->
-<!--                    <i class="fa fa-search"></i>-->
-<!--                  </button>-->
-<!--                </span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </form>-->
 
             <!-- Filter -->
             <form class="shop__filter">
@@ -158,12 +142,16 @@
 
         <div class="col-sm-8 col-md-9">
             <!-- Filters -->
-            <ul class="shop__sorting">
-                <li class="active"><a href="#">Popular</a></li>
-                <li><a href="#">Newest</a></li>
-                <li><a href="#">Bestselling</a></li>
-                <li><button type="button" >Account</button></li>
-            </ul>
+            <div class="header">
+                <ul class="nav nav-pills pull-right">
+                    <li class="active"><a id="btn-popular">Popular</a></li>
+                    <li class="inactive"><a id="btn-newest">Newest</a></li>
+                    <li class="inactive"><a id="btn-bestseller">Best-Seller</a></li>
+                    <li class="inactive"><a id="btn-sell">Sell</a></li>
+                    <li class="inactive"><a id="btn-account">Account</a></li>
+                </ul>
+                <h3 class="text-muted Fprj-name">BiMi Shop</h3>
+            </div>
 
             <div class="row">
                 <div class="col-sm-6 col-md-4">
@@ -285,5 +273,5 @@
     </div> <!-- / .row -->
 </div>
 </body>
-<script type="text/javascript" th:src="@{/js/home.js}"></script>
+
 </html>

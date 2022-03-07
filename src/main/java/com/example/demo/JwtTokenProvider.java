@@ -11,14 +11,8 @@ import java.util.Date;
 @Slf4j
 @Component
 public class JwtTokenProvider {
-    // doan JWT_SECRET nay la bi mat chi c server moi biet
     private final String JWT_SECRET =  "automate_tagging_model";
-    // thoi gian co hieu luc cua chuoi jwt // kieu hieu don gian nhu cai web trg minh ay
-
     private final long JWT_EXPIRATION = 30L*60L*24L*60L;
-//    private final long JWT_EXPIRATION = 10L;
-
-    // tao ra jwt tu thong tin cua user
 
     public  String generateToken (CustomUserDetails userDetails){
         Date now = new Date();
@@ -31,13 +25,12 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    // lay thong tin user tu jwt
-    public Long getUserIdFromJWT(String token){
+    public String getUserIdFromJWT(String token){
         Claims claims = Jwts.parser()
                 .setSigningKey(JWT_SECRET)
                 .parseClaimsJws(token)
                 .getBody();
-        return Long.parseLong(claims.getSubject());
+        return claims.getSubject();
     }
 
     public boolean validateToken(String authToken){
