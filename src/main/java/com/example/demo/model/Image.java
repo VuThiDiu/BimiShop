@@ -1,27 +1,28 @@
 package com.example.demo.model;
 
-
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "address")
 @Data
-public class Address {
+@Entity
+@Table(name = "image")
+public class Image {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(columnDefinition = "CHAR(32)")
     @Id
     private String id;
 
-
     @ManyToOne
-    @JoinColumn(name = "userid")
-    private User user;
+    @JoinColumn(name = "productid")
+    private Product product;
 
-    private String address;
+    // image add ne
 
+    private int tagCategory;
+
+    private int tagColor;
 
 }
