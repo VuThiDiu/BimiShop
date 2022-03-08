@@ -11,11 +11,7 @@ import java.util.Collections;
 @Data
 @AllArgsConstructor
 public class CustomUserDetails implements UserDetails {
-
     User user;
-
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // default all ROLE_USER

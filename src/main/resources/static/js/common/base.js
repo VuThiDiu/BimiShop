@@ -15,10 +15,10 @@ function BaseController(){
                 BaseController.prototype.HomePageRequest(loginResponse);
         });
         $("#btn-newest").click(function(){
-                alert("Updating");
+                BaseController.prototype.NewestPageRequest(loginResponse);
         });
         $("#btn-bestseller").click(function(){
-                alert("Updating");
+                BaseController.prototype.BestSeller(loginResponse);
         });
         $("#btn-sale").click(function(){
                 BaseController.prototype.SalePageRequest(loginResponse);
@@ -49,6 +49,34 @@ BaseController.prototype.SalePageRequest =  function(loginResponse){
             }
         }).done(function(){
             window.location.replace(`/api/sale/${loginResponse.id}`);
+        })
+        .fail(function(response){
+            alert('Error');
+        });
+};
+BaseController.prototype.NewestPageRequest =  function(loginResponse){
+        $.ajax({
+            method:"get",
+            url: `http://localhost:8080/api/newest`,
+            headers:{
+                "Authorization": `Bearer ${loginResponse.accessToken}`,
+            }
+        }).done(function(){
+            window.location.replace(`/api/newest`);
+        })
+        .fail(function(response){
+            alert('Error');
+        });
+};
+BaseController.prototype.BestSeller =  function(loginResponse){
+        $.ajax({
+            method:"get",
+            url: `http://localhost:8080/api/best_seller`,
+            headers:{
+                "Authorization": `Bearer ${loginResponse.accessToken}`,
+            }
+        }).done(function(){
+            window.location.replace(`/api/best_seller`);
         })
         .fail(function(response){
             alert('Error');
