@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +33,9 @@ public class AutomateTaggingClothesController {
         if(file.isEmpty()){
             return new ResponseEntity<String>("Can't upload the file", HttpStatus.EXPECTATION_FAILED);
         }else{
-            BufferedImage input = new BufferedImage(Config.IMAGE_WIDTH.getValue(), Config.IMAGE_HEIGHT.getValue(),BufferedImage.TYPE_INT_RGB);
+            InputStream inputStream = file.getInputStream();
+//            BufferedImage input = new BufferedImage(Config.IMAGE_WIDTH.getValue(), Config.IMAGE_HEIGHT.getValue(),BufferedImage.TYPE_INT_RGB);
+            BufferedImage input = ImageIO.read(inputStream);
             int prediction = loadModel.loadModel(input);
             return new ResponseEntity<String>(String.valueOf(prediction), HttpStatus.OK);
         }
