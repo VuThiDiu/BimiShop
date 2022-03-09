@@ -7,25 +7,32 @@ import org.deeplearning4j.nn.modelimport.keras.exceptions.UnsupportedKerasConfig
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.nd4j.common.io.ClassPathResource;
 import org.nd4j.linalg.api.ndarray.INDArray;
+import org.nd4j.linalg.factory.Nd4j;
 
 
 import java.awt.image.BufferedImage;
-import java.io.File;
+
 import java.io.IOException;
 
 
 public class LoadModel {
-    public INDArray loadModel(BufferedImage image) throws IOException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException {
+    public int  loadModel(BufferedImage image) throws IOException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException {
         String clothesClassification = new ClassPathResource(
                 "/static/category.h5").getFile().getPath();
+
+
         MultiLayerNetwork model = KerasModelImport.importKerasSequentialModelAndWeights(clothesClassification );
-
-        // make a randomSimple
-        ImageLoader loader = new ImageLoader( Config.IMAGE_WIDTH.getValue(), Config.IMAGE_HEIGHT.getValue(), Config.CHANNELS.getValue());
-        //
-        INDArray input = loader.asMatrix(image).div(255.0f);
-        // get  prediction
-        return   model.output(input);
+        ImageLoader loader = new ImageLoader(Config.IMAGE_HEIGHT.getValue(), Config.IMAGE_WIDTH.getValue(), Config.CHANNELS.getValue());
+        INDArray input = loader.asMatrix(image).div(255.0f).permute(new int[]{1,2,0});
+        INDArray  test =  Nd4j.zeros(1, Config.IMAGE_HEIGHT.getValue(), Config.IMAGE_WIDTH.getValue(), Config.CHANNELS.getValue()).add(-1).add(input);
+        INDArray result =  model.output(test);
+        return indexMaxValue(result);
     }
-
+    public int indexMaxValue(INDArray result){
+        int max = 0;
+        for (int i = 1; i < result.columns(); i++){
+            if (result.getDouble(max) < result.getDouble(i)) max = i;
+        }
+        return max;
+    }
 }
