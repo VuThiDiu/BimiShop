@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/api")
 public class SaleController {
-    @GetMapping("/sale/{id}")
-    public String getSalePage(@PathVariable("id") String id){
+    @GetMapping("/sale")
+    public String getSalePage(){
         return "selling";
     }
 }

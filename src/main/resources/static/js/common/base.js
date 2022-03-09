@@ -48,7 +48,7 @@ BaseController.prototype.SalePageRequest =  function(loginResponse){
                 "Authorization": `Bearer ${loginResponse.accessToken}`,
             }
         }).done(function(){
-            window.location.replace(`/api/sale/${loginResponse.id}`);
+            window.location.replace(`/api/sale`);
         })
         .fail(function(response){
             alert('Error');

@@ -15,7 +15,7 @@ RegisterController.prototype.register = function(username, password, phoneNumber
         $.ajax({
                 method:"post",
                 url: "http://localhost:8080/register",
-                data:{"username": username, "password": password, "phonenumber" : phoneNumber},
+                data:{"username": username, "password": password, "phoneNumber" : phoneNumber},
                 dataType:"application/json"
             }).fail(function(response){
                 if(response.status==200){
