@@ -3,26 +3,26 @@ function BaseController(){
     $(function loadData(){
         if(window.localStorage.getItem('loginResponse')!=null){
             var loginResponse = JSON.parse(localStorage.getItem("loginResponse"));
+            $("#btn-account").click(function(){
+                    BaseController.prototype.AccountPageRequest(loginResponse);
+            });
+            $("#btn-popular").click(function(){
+                    BaseController.prototype.HomePageRequest(loginResponse);
+            });
+            $("#btn-newest").click(function(){
+                    BaseController.prototype.NewestPageRequest(loginResponse);
+            });
+            $("#btn-bestseller").click(function(){
+                    BaseController.prototype.BestSeller(loginResponse);
+            });
+            $("#btn-sale").click(function(){
+                    BaseController.prototype.SalePageRequest(loginResponse);
+            });
         }else{
             alert ("Login plz");
             window.location.replace("/login");
         }});
-        var loginResponse = JSON.parse(localStorage.getItem("loginResponse"));
-        $("#btn-account").click(function(){
-                BaseController.prototype.AccountPageRequest(loginResponse);
-        });
-        $("#btn-popular").click(function(){
-                BaseController.prototype.HomePageRequest(loginResponse);
-        });
-        $("#btn-newest").click(function(){
-                BaseController.prototype.NewestPageRequest(loginResponse);
-        });
-        $("#btn-bestseller").click(function(){
-                BaseController.prototype.BestSeller(loginResponse);
-        });
-        $("#btn-sale").click(function(){
-                BaseController.prototype.SalePageRequest(loginResponse);
-        });
+
 }
 
 

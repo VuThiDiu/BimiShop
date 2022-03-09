@@ -3,15 +3,15 @@ function HomePageController(){
     $(function loadData(){
         if(window.localStorage.getItem('loginResponse')!=null){
             var loginResponse = JSON.parse(localStorage.getItem("loginResponse"));
+            var loginResponse = JSON.parse(localStorage.getItem("loginResponse"));
+                    $("#btn-logout").click(function(){
+                          localStorage.clear();
+                          window.location.replace("/login");
+                    });
         }else{
             alert ("Login plz");
             window.location.replace("/login");
         }});
-        var loginResponse = JSON.parse(localStorage.getItem("loginResponse"));
-        $("#btn-logout").click(function(){
-              localStorage.clear();
-              window.location.replace("/login");
-        });
 
 }
 HomePageController.prototype.callAPI =  function(loginResponse){

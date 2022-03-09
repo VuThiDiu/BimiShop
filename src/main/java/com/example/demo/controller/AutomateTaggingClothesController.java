@@ -27,6 +27,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/api")
 public class AutomateTaggingClothesController {
+    public List<String> tagCategory = Arrays.asList("Quần Dài", "Quần Short", "Váy Liền", "Áo Phông", "Áo Sơ Mi", "Áo Nỉ", "Áo Khoác");
     LoadModel loadModel = new LoadModel();;
     @PostMapping("/upload_image")
         public ResponseEntity<String>  automateTaggingClothes(@RequestParam("file") MultipartFile file) throws IOException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException {
@@ -37,7 +38,7 @@ public class AutomateTaggingClothesController {
 //            BufferedImage input = new BufferedImage(Config.IMAGE_WIDTH.getValue(), Config.IMAGE_HEIGHT.getValue(),BufferedImage.TYPE_INT_RGB);
             BufferedImage input = ImageIO.read(inputStream);
             int prediction = loadModel.loadModel(input);
-            return new ResponseEntity<String>(String.valueOf(prediction), HttpStatus.OK);
+            return new ResponseEntity<String>(tagCategory.get(prediction), HttpStatus.OK);
         }
 
     }
