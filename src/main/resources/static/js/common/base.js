@@ -43,7 +43,7 @@ BaseController.prototype.HomePageRequest =  function(loginResponse){
 BaseController.prototype.SalePageRequest =  function(loginResponse){
         $.ajax({
             method:"get",
-            url: `http://localhost:8080/api/sale/${loginResponse.id}`,
+            url: `http://localhost:8080/api/sale`,
             headers:{
                 "Authorization": `Bearer ${loginResponse.accessToken}`,
             }
