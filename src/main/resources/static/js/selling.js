@@ -2,13 +2,10 @@ function SellingController(){
     $(function loadData(){
             if(window.localStorage.getItem('loginResponse')!=null){
                 var loginResponse = JSON.parse(localStorage.getItem("loginResponse"));
-
                 let fileInput = document.getElementById("file-input");
                 let imageContainer = document.getElementById("images");
                 let numOfFiles = document.getElementById("num-of-files");
-
                 $("#file-input").on('change', function(){
-                // limit file upload
                     if(fileInput.files.length <= 10){
                         imageContainer.innerHtml = "";
                                 numOfFiles.textContent = `${fileInput.files.length} Files Selected`;
@@ -16,7 +13,6 @@ function SellingController(){
                                     let reader = new FileReader();
                                     let figure = document.createElement("div");
                                     figure.classList.add("image_tag");
-
                                     let cite = document.createElement("cite");
                                     let figCap = document.createElement("h4");
                                     let figCapColor = document.createElement("label");
@@ -40,16 +36,45 @@ function SellingController(){
                                     formData.append("file", i);
                                     SellingController.prototype.AutoTaggingAPI(formData, loginResponse, figCap, figCapColor);
                             }
+
                     }else{
                         alert("At most 10 files at times");
                     }
+
                 })
             }else{
                 alert ("Login plz");
                 window.location.replace("/login");
             }});
 }
+// update when upload  or  edit tag
+SellingController.prototype.tagController = function(){
+       var cites = document.getElementsByTagName("cite");
+       let tagCategories = document.getElementById("categories");
+       tagCategories.textContent="";
+       let tagColors = document.getElementById("colors");
+       tagColors.textContent = "";
+       var tagColorInit = new Set();
+       var tagCategoryInit = new Set();
+       for(cite of cites){
+          tagCategoryInit.add(cite.childNodes[0].textContent);
+          tagColorInit.add(cite.childNodes[1].style.backgroundColor);
+       }
 
+       for(category of tagCategoryInit){
+           let tagCategory = document.createElement("a");
+           tagCategory.classList.add("badge");
+           tagCategory.setAttribute("href", "javascript:void();");
+           tagCategory.innerText = category;
+           tagCategories.appendChild(tagCategory);
+       }
+       for(color of tagColorInit){
+            let labelColor = document.createElement("label");
+           labelColor.classList.add("shop-filter__color");
+           labelColor.style.backgroundColor = color;
+           tagColors.appendChild(labelColor);
+       }
+       }
 SellingController.prototype.AutoTaggingAPI = function(fileInput, loginResponse, figCap, figCapColor){
     $.ajax({
             method:"post",
@@ -64,7 +89,7 @@ SellingController.prototype.AutoTaggingAPI = function(fileInput, loginResponse, 
         .done(function(response){
             figCap.innerText = response.tagCategory;
             figCapColor.style.backgroundColor = response.tagColor;
-
+            SellingController.prototype.tagController();
         })
         .fail(function(response){
             alert("fail to upload image");
@@ -74,6 +99,7 @@ SellingController.prototype.AutoTaggingAPI = function(fileInput, loginResponse, 
 var sellingController;
 $(document).ready(function(){
     sellingController = new SellingController();
+
 })
 
 
