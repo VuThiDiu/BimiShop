@@ -13,23 +13,32 @@ function SellingController(){
                         imageContainer.innerHtml = "";
                                 numOfFiles.textContent = `${fileInput.files.length} Files Selected`;
                                 for (i of fileInput.files){
-                                    // read image
                                     let reader = new FileReader();
-                                    let figure = document.createElement("figure");
+                                    let figure = document.createElement("div");
+                                    figure.classList.add("image_tag");
+
+                                    let cite = document.createElement("cite");
                                     let figCap = document.createElement("h4");
+                                    let figCapColor = document.createElement("label");
                                     figCap.classList.add("text-center");
-                                    figure.appendChild(figCap);
+                                    figCapColor.classList.add("color_tag");
+
+                                    cite.appendChild(figCap);
+                                    cite.appendChild(figCapColor);
+
                                     reader.onload = () =>{
                                         let img = document.createElement("img");
                                         img.setAttribute("src", reader.result);
-                                        figure.insertBefore(img, figCap);
+                                        img.classList.add('center');
+                                        figure.appendChild(img);
+                                        figure.appendChild(cite);
                                     }
                                     imageContainer.appendChild(figure);
                                     reader.readAsDataURL(i);
 
                                     let formData = new FormData();
                                     formData.append("file", i);
-                                    SellingController.prototype.AutoTaggingAPI(formData, loginResponse, figCap);
+                                    SellingController.prototype.AutoTaggingAPI(formData, loginResponse, figCap, figCapColor);
                             }
                     }else{
                         alert("At most 10 files at times");
@@ -41,7 +50,7 @@ function SellingController(){
             }});
 }
 
-SellingController.prototype.AutoTaggingAPI = function(fileInput, loginResponse, figCap){
+SellingController.prototype.AutoTaggingAPI = function(fileInput, loginResponse, figCap, figCapColor){
     $.ajax({
             method:"post",
             url: "http://localhost:8080/api/upload_image",
@@ -53,7 +62,9 @@ SellingController.prototype.AutoTaggingAPI = function(fileInput, loginResponse, 
             contentType: false
         })
         .done(function(response){
-            figCap.innerText = response;
+            figCap.innerText = response.tagCategory;
+            figCapColor.style.backgroundColor = response.tagColor;
+
         })
         .fail(function(response){
             alert("fail to upload image");

@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.common.Config;
+import com.example.demo.dto.TagResponse;
 import com.example.demo.utils.LoadModel;
 import org.deeplearning4j.nn.modelimport.keras.exceptions.InvalidKerasConfigurationException;
 import org.deeplearning4j.nn.modelimport.keras.exceptions.UnsupportedKerasConfigurationException;
@@ -28,17 +29,22 @@ import java.util.List;
 @RequestMapping("/api")
 public class AutomateTaggingClothesController {
     public List<String> tagCategory = Arrays.asList("Quần Dài", "Quần Short", "Váy Liền", "Áo Phông", "Áo Sơ Mi", "Áo Nỉ", "Áo Khoác");
+    public List<String> tagColor = Arrays.asList("white", "pink", "red", "orange", "yellow", "blue", "gray", "black");
+
     LoadModel loadModel = new LoadModel();;
     @PostMapping("/upload_image")
-        public ResponseEntity<String>  automateTaggingClothes(@RequestParam("file") MultipartFile file) throws IOException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException {
+        public ResponseEntity<TagResponse>  automateTaggingClothes(@RequestParam("file") MultipartFile file) throws IOException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException {
+            TagResponse tagResponse = new TagResponse();
         if(file.isEmpty()){
-            return new ResponseEntity<String>("Can't upload the file", HttpStatus.EXPECTATION_FAILED);
+            return new ResponseEntity<TagResponse>(tagResponse, HttpStatus.EXPECTATION_FAILED);
         }else{
             InputStream inputStream = file.getInputStream();
-//            BufferedImage input = new BufferedImage(Config.IMAGE_WIDTH.getValue(), Config.IMAGE_HEIGHT.getValue(),BufferedImage.TYPE_INT_RGB);
             BufferedImage input = ImageIO.read(inputStream);
-            int prediction = loadModel.loadModel(input);
-            return new ResponseEntity<String>(tagCategory.get(prediction), HttpStatus.OK);
+            int predictionForCategory = loadModel.predictionForCategory(input);
+            int predictionForColor = loadModel.predictionForColor(input);
+            tagResponse.setTagCategory(tagCategory.get(predictionForCategory));
+            tagResponse.setTagColor(tagColor.get(predictionForColor));
+            return new ResponseEntity<TagResponse>(tagResponse, HttpStatus.OK);
         }
 
     }

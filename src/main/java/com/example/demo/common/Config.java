@@ -1,8 +1,10 @@
 package com.example.demo.common;
 
 public enum Config {
-    IMAGE_WIDTH(100),
-    IMAGE_HEIGHT(100),
+    IMAGE_WIDTH_CATEGORY(100),
+    IMAGE_HEIGHT_CATEGORY(100),
+    IMAGE_WIDTH_COLOR(200),
+    IMAGE_HEIGHT_COLOR(200),
     CHANNELS(3);
 
     private final int value;
