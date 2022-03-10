@@ -1,5 +1,6 @@
 package com.example.demo.utils;
 import com.example.demo.common.Config;
+import com.example.demo.dto.TagResponse;
 import org.datavec.image.loader.ImageLoader;
 import org.deeplearning4j.nn.modelimport.keras.KerasModelImport;
 import org.deeplearning4j.nn.modelimport.keras.exceptions.InvalidKerasConfigurationException;
@@ -13,9 +14,20 @@ import org.nd4j.linalg.factory.Nd4j;
 import java.awt.image.BufferedImage;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class LoadModel {
+    public List<String> tagCategory = Arrays.asList("Quần Dài", "Quần Short", "Váy Liền", "Áo Phông", "Áo Sơ Mi", "Áo Nỉ", "Áo Khoác");
+    public List<String> tagColor = Arrays.asList("white", "pink", "red", "orange", "yellow", "blue", "gray", "black");
+
+    public TagResponse prediction(BufferedImage image) throws IOException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException {
+        int predictionForCategory = predictionForCategory(image);
+        int predictionForColor = predictionForColor(image);
+        return new TagResponse(tagCategory.get(predictionForCategory), tagColor.get(predictionForColor));
+
+    }
     public int  predictionForCategory(BufferedImage image) throws IOException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException {
         String clothesClassification = new ClassPathResource(
                 "/static/category.h5").getFile().getPath();
@@ -25,13 +37,6 @@ public class LoadModel {
         INDArray  test =  Nd4j.zeros(1, Config.IMAGE_HEIGHT_CATEGORY.getValue(), Config.IMAGE_WIDTH_CATEGORY.getValue(), Config.CHANNELS.getValue()).add(0).add(input);
         INDArray result =  model.output(test);
         return indexMaxValue(result);
-    }
-    public int indexMaxValue(INDArray result){
-        int max = 0;
-        for (int i = 1; i < result.columns(); i++){
-            if (result.getDouble(max) < result.getDouble(i)) max = i;
-        }
-        return max;
     }
 
     public int  predictionForColor(BufferedImage image) throws IOException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException {
@@ -44,4 +49,13 @@ public class LoadModel {
         INDArray result =  model.output(test);
         return indexMaxValue(result);
     }
+    public int indexMaxValue(INDArray result){
+        int max = 0;
+        for (int i = 1; i < result.columns(); i++){
+            if (result.getDouble(max) < result.getDouble(i)) max = i;
+        }
+        return max;
+    }
+
+
 }

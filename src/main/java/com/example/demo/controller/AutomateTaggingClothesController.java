@@ -28,9 +28,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/api")
 public class AutomateTaggingClothesController {
-    public List<String> tagCategory = Arrays.asList("Quần Dài", "Quần Short", "Váy Liền", "Áo Phông", "Áo Sơ Mi", "Áo Nỉ", "Áo Khoác");
-    public List<String> tagColor = Arrays.asList("white", "pink", "red", "orange", "yellow", "blue", "gray", "black");
-
     LoadModel loadModel = new LoadModel();;
     @PostMapping("/upload_image")
         public ResponseEntity<TagResponse>  automateTaggingClothes(@RequestParam("file") MultipartFile file) throws IOException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException {
@@ -40,10 +37,7 @@ public class AutomateTaggingClothesController {
         }else{
             InputStream inputStream = file.getInputStream();
             BufferedImage input = ImageIO.read(inputStream);
-            int predictionForCategory = loadModel.predictionForCategory(input);
-            int predictionForColor = loadModel.predictionForColor(input);
-            tagResponse.setTagCategory(tagCategory.get(predictionForCategory));
-            tagResponse.setTagColor(tagColor.get(predictionForColor));
+            tagResponse = loadModel.prediction(input);
             return new ResponseEntity<TagResponse>(tagResponse, HttpStatus.OK);
         }
 
