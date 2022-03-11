@@ -48,29 +48,54 @@ function SellingController(){
                     }
 
                 });
+                        $("button.save_change").on("click", function (){
+                                var tagCategoryChange = $("#edit_tagCategory :selected").val();
+                                var tagColorChange = "";
+                                var id = $(".modal-body#id").val();
+                                let spanDot = document.querySelectorAll("span.dot");
+                                if(spanDot.length > 0){
+                                    var tagColorChange = spanDot[0].parentNode.getElementsByTagName("label")[0].style.color;
+                                    SellingController.prototype.saveChangeTag1(id, tagCategoryChange, tagColorChange);
+                                }else{
+                                    SellingController.prototype.saveChangeTag2(id, tagCategoryChange);
+                                }
+                                SellingController.prototype.tagController();
+                            }
+                            );
 
+                        $("button#saveButton").on("click", function(){
+                            if(SellingController.prototype.validateForm() == true){
+                                // upload image into firebase
+
+                            }
+
+                        })
             }else{
                 alert ("Login plz");
                 window.location.replace("/login");
             }});
-            $("button.save_change").on("click", function (){
-                var tagCategoryChange = $("#edit_tagCategory :selected").val();
-                var tagColorChange = "";
-                var id = $(".modal-body#id").val();
-                let spanDot = document.querySelectorAll("span.dot");
-                if(spanDot.length > 0){
-                    var tagColorChange = spanDot[0].parentNode.getElementsByTagName("label")[0].style.color;
-                    SellingController.prototype.saveChangeTag1(id, tagCategoryChange, tagColorChange);
-                }else{
-                    SellingController.prototype.saveChangeTag2(id, tagCategoryChange);
-                }
-                SellingController.prototype.tagController();
-            }
-            );
 
 
 }
-
+SellingController.prototype.validateForm = function(){
+    if(document.querySelectorAll("image_tag").length <= 0){
+        alert("Missing photos");
+        return false;
+    }
+    if($("#description").val() == ""){
+        alert("Missing Description");
+        return false;
+    }
+    if($("#quantityInStock").val() == ""){
+        alert("Missing QuantityInStock");
+        return false;
+    }
+    if($("#cost").val() == ""){
+        alert("Missing Cost");
+        return false;
+    }
+    return true;
+}
 SellingController.prototype.saveChangeTag1 = function(id, category, color){
        let node = document.getElementById(`${id}`).getElementsByClassName('cite')[0];
        node.getElementsByClassName("text-center")[0].textContent = category;
