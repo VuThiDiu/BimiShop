@@ -29,7 +29,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class AutomateTaggingClothesController {
     LoadModel loadModel = new LoadModel();;
-    @PostMapping("/upload_image")
+    @PostMapping("/get_tagImage")
         public ResponseEntity<TagResponse>  automateTaggingClothes(@RequestParam("file") MultipartFile file) throws IOException, UnsupportedKerasConfigurationException, InvalidKerasConfigurationException {
             TagResponse tagResponse = new TagResponse();
         if(file.isEmpty()){

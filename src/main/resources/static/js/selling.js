@@ -178,7 +178,7 @@ SellingController.prototype.tagController = function(){
 SellingController.prototype.AutoTaggingAPI = function(fileInput, loginResponse, figCap, figCapColor){
     $.ajax({
             method:"post",
-            url: "http://localhost:8080/api/upload_image",
+            url: "http://localhost:8080/api/get_tagImage",
             headers:{
                 "Authorization": `Bearer ${loginResponse.accessToken}`,
             },

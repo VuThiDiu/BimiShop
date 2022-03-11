@@ -6,8 +6,7 @@ import com.example.demo.LoginResponse;
 import com.example.demo.dto.UserLogin;
 import com.example.demo.model.CustomUserDetails;
 import com.example.demo.model.User;
-import com.example.demo.service.UserService;
-import com.example.demo.utils.WebUtils;
+import com.example.demo.service.impl.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,6 @@ public class LoginController {
 //        model.addAttribute("url", WebUtils.buildUrlForPaging(httpServletRequest, "/login"));
         return "login";
     }
-    // ok ne
     @PostMapping(value = "/login", produces = "application/json")
     public ResponseEntity authentication(@ModelAttribute("loginForm") UserLogin user){
         try{
