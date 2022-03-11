@@ -38,11 +38,9 @@ function SellingController(){
                                     }
                                     imageContainer.appendChild(figure);
                                     reader.readAsDataURL(i);
-
                                     let formData = new FormData();
                                     formData.append("file", i);
                                     SellingController.prototype.AutoTaggingAPI(formData, loginResponse, figCap, figCapColor);
-
                             }
 
                     }else{
@@ -55,9 +53,34 @@ function SellingController(){
                 alert ("Login plz");
                 window.location.replace("/login");
             }});
+            $("button.save_change").on("click", function (){
+                var tagCategoryChange = $("#edit_tagCategory :selected").val();
+                var tagColorChange = "";
+                var id = $(".modal-body#id").val();
+                let spanDot = document.querySelectorAll("span.dot");
+                if(spanDot.length > 0){
+                    var tagColorChange = spanDot[0].parentNode.getElementsByTagName("label")[0].style.color;
+                    SellingController.prototype.saveChangeTag1(id, tagCategoryChange, tagColorChange);
+                }else{
+                    SellingController.prototype.saveChangeTag2(id, tagCategoryChange);
+                }
+            }
+            );
 
 
+}
 
+SellingController.prototype.saveChangeTag1 = function(id, category, color){
+       let node = document.getElementById(`${id}`).getElementsByClassName('cite')[0];
+       node.getElementsByClassName("text-center")[0].textContent = category;
+       node.getElementsByClassName("color_tag")[0].style.backgroundColor = color;
+       $('#exampleModal').modal('hide');
+}
+
+SellingController.prototype.saveChangeTag2 = function(id, category){
+       let node = document.getElementById(`${id}`).getElementsByClassName('cite')[0];
+       node.getElementsByClassName("text-center")[0].textContent = category;
+       $('#exampleModal').modal('hide');
 }
 // reload remove and edit button
 SellingController.prototype.buttonReload = function(){
@@ -68,15 +91,19 @@ SellingController.prototype.buttonReload = function(){
                     SellingController.prototype.tagController();
                 })
             })
-
             let editButton = document.querySelectorAll("span.button_edit");
             editButton.forEach(button =>  {
                 button.addEventListener('click', function(){
+                let re = document.querySelectorAll(".dot");
+                    for(item of re){
+                        item.remove();
+                    }
                     let node = this.parentNode.parentNode.parentNode;
-//                        let image = node.getElementsByClassName("center")[0].src;
                     let category = node.getElementsByClassName('text-center')[0].textContent;
-                    let color = node.getElementsByClassName("color_tag")[0].style.backgroundColor;
+//                    let color = node.getElementsByClassName("color_tag")[0].style.backgroundColor;
                     let id = node.id;
+                    $(".modal-body #edit_tagCategory").val(category);
+                    $(".modal-body#id").val(id);
                 })
             });
 
