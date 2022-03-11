@@ -65,7 +65,7 @@ body{margin-top:20px;}
   width: 30px;
   height: 30px;
   background: transparent;
-
+  border : 1px solid #dedede;
   cursor: pointer;
   margin-right : 10px;
 }
@@ -80,7 +80,7 @@ body{margin-top:20px;}
   display: inline-block;
   margin: 0 2px 2px 0;
   width : 20px;
-  border : 1px solid rgba(0, 0, 0, 0.1);
+  border : 1px solid #dedede;
   padding-left:26px;
   height: 10px;
 }

@@ -64,6 +64,7 @@ function SellingController(){
                 }else{
                     SellingController.prototype.saveChangeTag2(id, tagCategoryChange);
                 }
+                SellingController.prototype.tagController();
             }
             );
 
