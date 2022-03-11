@@ -13,12 +13,13 @@ function SellingController(){
                                     let reader = new FileReader();
                                     let figure = document.createElement("div");
                                     figure.classList.add("image_tag");
+                                    let id = new Date().getTime();
+                                    figure.setAttribute("id", id);
                                     let cite = document.createElement("cite");
                                     let figCap = document.createElement("h4");
                                     let figCapColor = document.createElement("label");
                                     figCap.classList.add("text-center");
                                     figCapColor.classList.add("color_tag");
-
                                     cite.appendChild(figCap);
                                     cite.appendChild(figCapColor);
 
@@ -41,7 +42,43 @@ function SellingController(){
                         alert("At most 10 files at times");
                     }
 
+                });
+
+                let deleteButton = document.querySelectorAll("span.button_delete");
+                deleteButton.forEach(button =>  {
+                    button.addEventListener('click', function(){
+                        this.parentNode.parentNode.parentNode.remove();
+
+                    })
                 })
+
+                let editButton = document.querySelectorAll("span.button_edit");
+                editButton.forEach(button =>  {
+                    button.addEventListener('click', function(){
+                        let node = this.parentNode.parentNode.parentNode.id;
+                        document.getElementById(node).getElementsByClassName("edit")[0].style.display = "inline";
+                    })
+                })
+
+                let saveButton = document.querySelectorAll("span.button_save");
+                saveButton.forEach(button =>  {
+                    button.addEventListener('click', function(){
+                        let node = this.parentNode.parentNode.parentNode.id;
+                        document.getElementById(node).getElementsByClassName("edit")[0].style.display = "none";
+
+                    })
+                })
+
+                let cancelButton = document.querySelectorAll("span.button_cancel");
+                cancelButton.forEach(button =>  {
+                    button.addEventListener('click', function(){
+                        let node = this.parentNode.parentNode.parentNode.id;
+                        document.getElementById(node).getElementsByClassName("edit")[0].style.display = "none";
+                    })
+                })
+
+
+
             }else{
                 alert ("Login plz");
                 window.location.replace("/login");
