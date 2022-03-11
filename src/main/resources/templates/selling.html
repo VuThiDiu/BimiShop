@@ -43,57 +43,8 @@
                             <h4 class="text-center">Áo phông</h4>
                             <label class="color_tag" style="background-color : red"></label>
                             <div class="option">
-                                <span class="button_edit"  data-toggle="tooltip" data-placement="bottom" ><i class="fa fa-pencil-square-o fa-lg"></i></span>
-                                <span class="button_save" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-floppy-o fa-lg"></i></span>
+                                <span class="button_edit"  data-toggle="modal"  data-target="#exampleModal" ><i class="fa fa-pencil-square-o fa-lg"></i></span>
                                 <span class="button_delete" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-trash-o fa-lg"></i></span>
-                                <span class="button_cancel" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-times-circle fa-lg"></i></span>
-                            </div>
-                            <div class="edit">
-                                <select class="form-control" id="edit_tagCategory">
-                                    <option>Quần dài</option>
-                                    <option>Quần Short</option>
-                                    <option>Váy Liền</option>
-                                    <option>Áo Phông</option>
-                                    <option>Áo Sơ Mi</option>
-                                    <option>Áo Nỉ</option>
-                                    <option>Áo Khoác</option>
-                                </select>
-                                <div style="margin-top: 10px">
-                                    <div class="shop-filter__color">
-                                        <input type="text"  value="" data-input-color="white">
-                                        <label style="background-color: white;"></label>
-                                    </div>
-                                    <div class="shop-filter__color">
-                                        <input type="text"  value="" data-input-color="pink">
-                                        <label  style="background-color: pink;"></label>
-                                    </div>
-                                    <div class="shop-filter__color">
-                                        <input type="text"  value="" data-input-color="red">
-                                        <label  style="background-color: red;"></label>
-                                    </div>
-                                    <div class="shop-filter__color">
-                                        <input type="text"  value="" data-input-color="orange">
-                                        <label  style="background-color: orange;"></label>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="shop-filter__color">
-                                        <input type="text"  value="" data-input-color="yellow">
-                                        <label  style="background-color: yellow;"></label>
-                                    </div>
-                                    <div class="shop-filter__color">
-                                        <input type="text"  value="" data-input-color="blue">
-                                        <label  style="background-color: blue;"></label>
-                                    </div>
-                                    <div class="shop-filter__color">
-                                        <input type="text"  value="" data-input-color="gray">
-                                        <label  style="background-color: gray;"></label>
-                                    </div>
-                                    <div class="shop-filter__color">
-                                        <input type="text" value="" data-input-color="black">
-                                        <label  style="background-color: black;"></label>
-                                    </div>
-                                </div>
                             </div>
                         </cite>
                     </div>
@@ -136,6 +87,68 @@
 
             </div>
 
+            <!--Modal-->
+            <div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="width : 400px; margin-left: auto; margin-right: auto">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Tag</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                                <select class="form-control" id="edit_tagCategory">
+                                    <option>Quần dài</option>
+                                    <option>Quần Short</option>
+                                    <option>Váy Liền</option>
+                                    <option>Áo Phông</option>
+                                    <option>Áo Sơ Mi</option>
+                                    <option>Áo Nỉ</option>
+                                    <option>Áo Khoác</option>
+                                </select>
+                            <div style="margin-top: 10px">
+                                <div class="shop-filter__color">
+                                    <input type="text"  value="" data-input-color="white">
+                                    <label style="background-color: #f7efef; color : white"></label>
+                                </div>
+                                <div class="shop-filter__color">
+                                    <input type="text"  value="" data-input-color="pink">
+                                    <label  style="background-color: pink; color : pink"></label>
+                                </div>
+                                <div class="shop-filter__color">
+                                    <input type="text"  value="" data-input-color="red">
+                                    <label  style="background-color: red; color : red"></label>
+                                </div>
+                                <div class="shop-filter__color">
+                                    <input type="text"  value="" data-input-color="orange">
+                                    <label  style="background-color: orange; color : orange"></label>
+                                </div>
+                                <div class="shop-filter__color">
+                                    <input type="text"  value="" data-input-color="yellow">
+                                    <label  style="background-color: yellow; color : yellow"></label>
+                                </div>
+                                <div class="shop-filter__color">
+                                    <input type="text"  value="" data-input-color="blue">
+                                    <label  style="background-color: blue; color : blue"></label>
+                                </div>
+                                <div class="shop-filter__color">
+                                    <input type="text"  value="" data-input-color="gray">
+                                    <label  style="background-color: gray; color: gray"></label>
+                                </div>
+                                <div class="shop-filter__color">
+                                    <input type="text" value="" data-input-color="black">
+                                    <label  style="background-color: black; color; black"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

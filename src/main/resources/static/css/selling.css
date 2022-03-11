@@ -65,11 +65,12 @@ body{margin-top:20px;}
   width: 30px;
   height: 30px;
   background: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
+
   cursor: pointer;
   margin-right : 10px;
-
+}
+.label{
+      border-radius: 20px;
 }
 .body-content{
     padding: 30px 10px 90px 30px;
@@ -98,6 +99,12 @@ body{margin-top:20px;}
 .yellow{
     background-color : yellow;
 }
-.edit{
-    display: none;
+
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: #bbb;
+  margin-left: 12px;
+  border-radius: 50%;
+  display: inline-block;
 }

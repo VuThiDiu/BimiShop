@@ -16,12 +16,18 @@ function SellingController(){
                                     let id = new Date().getTime();
                                     figure.setAttribute("id", id);
                                     let cite = document.createElement("cite");
+                                    cite.classList.add("cite");
                                     let figCap = document.createElement("h4");
                                     let figCapColor = document.createElement("label");
                                     figCap.classList.add("text-center");
                                     figCapColor.classList.add("color_tag");
                                     cite.appendChild(figCap);
                                     cite.appendChild(figCapColor);
+                                    $("<div class=\"option\"> "+
+                                                                       "<span class=\"button_edit\"  data-toggle=\"modal\"  data-target=\"#exampleModal\" ><i class=\"fa fa-pencil-square-o fa-lg\"></i></span> "+
+                                                                       "<span class=\"button_delete\" data-toggle=\"tooltip\" data-placement=\"bottom\"><i class=\"fa fa-trash-o fa-lg\"></i></span> "+
+                                                                   "</div>").insertAfter(figCapColor);
+                                    // option for edit and remove
 
                                     reader.onload = () =>{
                                         let img = document.createElement("img");
@@ -36,6 +42,7 @@ function SellingController(){
                                     let formData = new FormData();
                                     formData.append("file", i);
                                     SellingController.prototype.AutoTaggingAPI(formData, loginResponse, figCap, figCapColor);
+
                             }
 
                     }else{
@@ -44,46 +51,49 @@ function SellingController(){
 
                 });
 
-                let deleteButton = document.querySelectorAll("span.button_delete");
-                deleteButton.forEach(button =>  {
-                    button.addEventListener('click', function(){
-                        this.parentNode.parentNode.parentNode.remove();
-
-                    })
-                })
-
-                let editButton = document.querySelectorAll("span.button_edit");
-                editButton.forEach(button =>  {
-                    button.addEventListener('click', function(){
-                        let node = this.parentNode.parentNode.parentNode.id;
-                        document.getElementById(node).getElementsByClassName("edit")[0].style.display = "inline";
-                    })
-                })
-
-                let saveButton = document.querySelectorAll("span.button_save");
-                saveButton.forEach(button =>  {
-                    button.addEventListener('click', function(){
-                        let node = this.parentNode.parentNode.parentNode.id;
-                        document.getElementById(node).getElementsByClassName("edit")[0].style.display = "none";
-
-                    })
-                })
-
-                let cancelButton = document.querySelectorAll("span.button_cancel");
-                cancelButton.forEach(button =>  {
-                    button.addEventListener('click', function(){
-                        let node = this.parentNode.parentNode.parentNode.id;
-                        document.getElementById(node).getElementsByClassName("edit")[0].style.display = "none";
-                    })
-                })
-
-
-
             }else{
                 alert ("Login plz");
                 window.location.replace("/login");
             }});
+
+
+
 }
+// reload remove and edit button
+SellingController.prototype.buttonReload = function(){
+        let deleteButton = document.querySelectorAll("span.button_delete");
+            deleteButton.forEach(button =>  {
+                button.addEventListener('click', function(){
+                    this.parentNode.parentNode.parentNode.remove();
+                    SellingController.prototype.tagController();
+                })
+            })
+
+            let editButton = document.querySelectorAll("span.button_edit");
+            editButton.forEach(button =>  {
+                button.addEventListener('click', function(){
+                    let node = this.parentNode.parentNode.parentNode;
+//                        let image = node.getElementsByClassName("center")[0].src;
+                    let category = node.getElementsByClassName('text-center')[0].textContent;
+                    let color = node.getElementsByClassName("color_tag")[0].style.backgroundColor;
+                    let id = node.id;
+                })
+            });
+
+            let colorButton = document.querySelectorAll(".shop-filter__color");
+            colorButton.forEach(button => {
+                button.addEventListener('click', function(){
+                    let re = document.querySelectorAll(".dot");
+                    for(item of re){
+                        item.remove();
+                    }
+                    let node = this.getElementsByTagName("label")[0];
+                    let color = node.style.color;
+                    $("<span class=\"dot\"></span>").insertAfter(node);
+                })
+            })
+}
+
 // update when upload  or  edit tag
 SellingController.prototype.tagController = function(){
        var cites = document.getElementsByTagName("cite");
@@ -127,10 +137,13 @@ SellingController.prototype.AutoTaggingAPI = function(fileInput, loginResponse, 
             figCap.innerText = response.tagCategory;
             figCapColor.style.backgroundColor = response.tagColor;
             SellingController.prototype.tagController();
+            SellingController.prototype.buttonReload();
         })
         .fail(function(response){
             alert("fail to upload image");
+            SellingController.prototype.buttonReload();
         });
+
 }
 
 var sellingController;
@@ -138,5 +151,7 @@ $(document).ready(function(){
     sellingController = new SellingController();
 
 })
+
+
 
 

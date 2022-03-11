@@ -382,8 +382,7 @@ body{margin-top:20px;}
   width: 30px;
   height: 30px;
   background: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
+  border-radius: 20px;
   cursor: pointer;
 }
 /** Shop: Sorting **/
@@ -392,7 +391,7 @@ body{margin-top:20px;}
   padding-left: 0;
   margin-bottom: 40px;
   margin-top: -20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
   text-align: right;
 }
 .shop__sorting > li {
