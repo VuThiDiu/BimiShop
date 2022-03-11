@@ -26,6 +26,8 @@ public class Product {
 
     private int quantityInStock;
 
+    private String description;
+
     private int discount;
 
     private double price;
@@ -38,6 +40,7 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<OrderDetail> orderDetails;
 
-
     private long numberOfViews;
+
+    private String address;
 }

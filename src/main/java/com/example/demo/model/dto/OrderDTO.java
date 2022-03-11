@@ -15,6 +15,7 @@ public class OrderDTO {
     private DateTime shippedDate;
     private List<OrderDetailDTO> orderDetails;
     private String address;
+    private int discount;
 
     public static OrderDTO from (Order order){
         OrderDTO orderDTO = new OrderDTO();
@@ -23,6 +24,7 @@ public class OrderDTO {
         orderDTO.setOrderDate(order.getOrderDate());
         orderDTO.setShippedDate(order.getShippedDate());
         orderDTO.setAddress(order.getAddress());
+        orderDTO.setDiscount(order.getDiscount());
 
         return orderDTO;
     }

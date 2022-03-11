@@ -19,7 +19,7 @@ public class Image {
     @JoinColumn(name = "productid")
     private Product product;
 
-    // image add ne
+    private String urlImage;
 
     private int tagCategory;
 

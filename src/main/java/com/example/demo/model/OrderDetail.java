@@ -24,6 +24,7 @@ public class OrderDetail {
     @JoinColumn(name = "productId")
     private Product product;
 
+    private int amount;
 
     private double rating;
 

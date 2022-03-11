@@ -7,6 +7,7 @@ import lombok.Data;
 public class ImageDTO {
     private String id;
     private String productId;
+    private String urlImage;
     private int tagCategory;
     private int tagColor;
 
@@ -14,6 +15,7 @@ public class ImageDTO {
         ImageDTO imageDTO = new ImageDTO();
         imageDTO.setId(image.getId());
         imageDTO.setProductId(image.getProduct().getId());
+        imageDTO.setUrlImage(image.getUrlImage());
         imageDTO.setTagCategory(image.getTagCategory());
         imageDTO.setTagColor(image.getTagColor());
         return imageDTO;

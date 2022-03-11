@@ -19,6 +19,8 @@ public class ProductDTO {
     private List<ImageDTO> images;
     private List<OrderDetailDTO> orderDetails;
     private long numberOfViews;
+    private String address;
+    private String description;
 
     public static ProductDTO from(Product product){
         ProductDTO  productDTO = new ProductDTO();
@@ -31,6 +33,8 @@ public class ProductDTO {
         productDTO.setImages(product.getImageList().stream().map(ImageDTO::from).collect(Collectors.toList()));
         productDTO.setOrderDetails(product.getOrderDetails().stream().map(OrderDetailDTO::from).collect(Collectors.toList()));
         productDTO.setNumberOfViews(product.getNumberOfViews());
+        productDTO.setAddress(product.getAddress());
+        productDTO.setDescription(product.getDescription());
         return productDTO;
     }
 }

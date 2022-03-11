@@ -11,6 +11,7 @@ public class OrderDetailDTO {
     private String productId;
     private double rating;
     private String comment;
+    private int amount;
 
     public static  OrderDetailDTO from (OrderDetail  orderDetail){
         OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
@@ -19,6 +20,7 @@ public class OrderDetailDTO {
         orderDetailDTO.setProductId(orderDetail.getProduct().getId());
         orderDetailDTO.setRating(orderDetail.getRating());
         orderDetailDTO.setComment(orderDetail.getComment());
+        orderDetailDTO.setAmount(orderDetail.getAmount());
         return orderDetailDTO;
     }
 }

@@ -32,4 +32,6 @@ public class Order {
     private List<OrderDetail> orderDetails;
 
     private String address;
+
+    private int discount;
 }
