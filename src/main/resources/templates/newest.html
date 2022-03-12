@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sd="http://www.thymeleaf.org/spring-data">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -94,7 +94,7 @@
                 <div>
                     <div class="shop-filter__color">
                         <input type="text" id="shop-filter-color_1" value="" data-input-color="white">
-                        <label for="shop-filter-color_1" style="background-color: white;"></label>
+                        <label for="shop-filter-color_1" style="background-color: white;border: 1px solid #e8caca"></label>
                     </div>
                     <div class="shop-filter__color">
                         <input type="text" id="shop-filter-color_2" value="" data-input-color="pink">
@@ -154,284 +154,68 @@
                 </ul>
                 <h3 class="text-muted Fprj-name">BiMi Shop</h3>
             </div>
-            <div class="container bootdey">
+            <div class="container bootdey" style="margin-top : 36px">
                 <div class="col-md-10">
-                    <div class="title"><span>Featured Products</span></div>
-                    <div class="col-sm-4 col-md-3 box-product-outer">
-                        <div class="box-product">
-                            <div class="img-wrapper">
-                                <a href="detail.html">
-                                    <img alt="Product" src="https://bootdey.com/img/Content/avatar/avatar1.png">
-                                </a>
-                                <div class="tags">
-                                    <span class="label-tags"><span class="label label-danger">Sale</span></span>
-                                    <span class="label-tags"><span class="label label-info">Featured</span></span>
-                                    <span class="label-tags"><span class="label label-warning">Polo</span></span>
+                    <th th:if="${!products.isEmpty()}" th:each="product, iter:${products}">
+                        <div class="col-sm-4 col-md-3 box-product-outer">
+                            <div class="box-product">
+                                <div class="img-wrapper">
+                                    <a href="detail.html">
+                                        <img alt="Product" th:src="${product.getImages[0].getUrlImage()}" style="height: 270px; width:200px">
+                                    </a>
+                                    <div class="tags" th:each="tag, iter: ${product.getTagCategories}">
+                                        <span class="label-tags"><span class="label label-info" th:text="${tag}"></span></span>
+                                    </div>
+                                    <div class="option">
+                                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Add to Cart"><i class="ace-icon fa fa-shopping-cart"></i></a>
+                                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Compare"><i class="ace-icon fa fa-align-left"></i></a>
+                                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Wishlist"><i class="ace-icon fa fa-heart"></i></a>
+                                    </div>
                                 </div>
-                                <div class="option">
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Add to Cart"><i class="ace-icon fa fa-shopping-cart"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Compare"><i class="ace-icon fa fa-align-left"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Wishlist"><i class="ace-icon fa fa-heart"></i></a>
+                                <div style="display: inline-flex">
+                                    <div style="margin-right: 10px;" class="tags" th:each="tag, iter: ${product.getTagColors}">
+                                        <span class="label-tags"><span class="label label-info" th:text="${tag}"></span></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <h6><a href="detail.html">IncultGeo Print Polo T-Shirt</a></h6>
-                            <div class="price">
-                                <div>$16.59<span class="price-down">-10%</span></div>
-                                <span class="price-old">$15.00</span>
-                            </div>
-                            <div class="rating">
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star-half-o"></i>
-                                <a href="#">(2 reviews)</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-md-3 hidden-xs box-product-outer">
-                        <div class="box-product">
-                            <div class="img-wrapper">
-                                <a href="detail.html">
-                                    <img alt="Product" src="https://bootdey.com/img/Content/avatar/avatar6.png">
-                                </a>
-                                <div class="tags">
-                                    <span class="label-tags"><span class="label label-danger">Sale</span></span>
-                                    <span class="label-tags"><span class="label label-info">Featured</span></span>
-                                    <span class="label-tags"><span class="label label-warning">Polo</span></span>
-                                </div>
-                                <div class="option">
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Add to Cart"><i class="ace-icon fa fa-shopping-cart"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Compare"><i class="ace-icon fa fa-align-left"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Wishlist"><i class="ace-icon fa fa-heart"></i></a>
-                                </div>
-                            </div>
-                            <h6><a href="detail.html">Tommy HilfigerNavy Blue Printed Polo T-Shirt</a></h6>
-                            <div class="price">
-                                <div>$45.27<span class="price-down">-10%</span></div>
-                                <span class="price-old">$15.00</span>
-                            </div>
-                            <div class="rating">
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star-half-o"></i>
-                                <a href="#">(3 reviews)</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-md-3 hidden-xs box-product-outer">
-                        <div class="box-product">
-                            <div class="img-wrapper">
-                                <a href="detail.html">
-                                    <img alt="Product" src="https://bootdey.com/img/Content/avatar/avatar3.png">
-                                </a>
-                                <div class="tags">
-                                    <span class="label-tags"><span class="label label-danger">Sale</span></span>
-                                    <span class="label-tags"><span class="label label-info">Featured</span></span>
-                                    <span class="label-tags"><span class="label label-warning">Polo</span></span>
-                                </div>
-                                <div class="option">
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Add to Cart"><i class="ace-icon fa fa-shopping-cart"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Compare"><i class="ace-icon fa fa-align-left"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Wishlist"><i class="ace-icon fa fa-heart"></i></a>
-                                </div>
-                            </div>
-                            <h6><a href="detail.html">WranglerNavy Blue Solid Polo T-Shirt</a></h6>
-                            <div class="price">
-                                <div>$25.59<span class="price-down">-10%</span></div>
-                                <span class="price-old">$15.00</span>
-                            </div>
-                            <div class="rating">
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star-half-o"></i>
-                                <a href="#">(4 reviews)</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-md-3 hidden-sm hidden-xs box-product-outer">
-                        <div class="box-product">
-                            <div class="img-wrapper">
-                                <a href="detail.html">
-                                    <img alt="Product" src="https://bootdey.com/img/Content/avatar/avatar5.png">
-                                </a>
-                                <div class="tags">
-                                    <span class="label-tags"><span class="label label-danger">Sale</span></span>
-                                    <span class="label-tags"><span class="label label-info">Featured</span></span>
-                                    <span class="label-tags"><span class="label label-warning">Polo</span></span>
-                                </div>
-                                <div class="option">
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Add to Cart"><i class="ace-icon fa fa-shopping-cart"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Compare"><i class="ace-icon fa fa-align-left"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Wishlist"><i class="ace-icon fa fa-heart"></i></a>
-                                </div>
-                            </div>
-                            <h6><a href="detail.html">NikeAs Matchup -Pq Grey Polo T-Shirt</a></h6>
-                            <div class="price">
-                                <div>$15.79<span class="price-down">-10%</span></div>
-                                <span class="price-old">$15.00</span>
-                            </div>
-                            <div class="rating">
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star-half-o"></i>
-                                <a href="#">(5 reviews)</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="title"><span>V-Neck Collection</span></div>
-                    <div class="col-sm-4 col-md-3 box-product-outer">
-                        <div class="box-product">
-                            <div class="img-wrapper">
-                                <a href="detail.html">
-                                    <img alt="Product" src="https://bootdey.com/img/Content/avatar/avatar6.png">
-                                </a>
-                                <div class="tags">
-                                    <span class="label-tags"><span class="label label-danger">Sale</span></span>
-                                    <span class="label-tags"><span class="label label-success">Collection</span></span>
-                                </div>
-                                <div class="option">
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Add to Cart"><i class="ace-icon fa fa-shopping-cart"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Compare"><i class="ace-icon fa fa-align-left"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Wishlist"><i class="ace-icon fa fa-heart"></i></a>
-                                </div>
-                            </div>
-                            <h6><a href="detail.html">PhosphorusGrey Melange Printed V Neck T-Shirt</a></h6>
-                            <div class="price">
-                                <div>$5.25<span class="price-down">-10%</span></div>
-                                <span class="price-old">$15.00</span>
-                            </div>
-                            <div class="rating">
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star-half-o"></i>
-                                <i class="ace-icon fa fa-star-o"></i>
-                                <a href="#">(5 reviews)</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-md-3 hidden-xs box-product-outer">
-                        <div class="box-product">
-                            <div class="img-wrapper">
-                                <a href="detail.html">
-                                    <img alt="Product" src="https://bootdey.com/img/Content/avatar/avatar5.png">
-                                </a>
-                                <div class="tags">
-                                    <span class="label-tags"><span class="label label-danger">Sale</span></span>
-                                    <span class="label-tags"><span class="label label-success">Collection</span></span>
-                                </div>
-                                <div class="option">
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Add to Cart"><i class="ace-icon fa fa-shopping-cart"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Compare"><i class="ace-icon fa fa-align-left"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Wishlist"><i class="ace-icon fa fa-heart"></i></a>
-                                </div>
-                            </div>
-                            <h6><a href="detail.html">United Colors of BenettonNavy Blue Solid V Neck T Shirt</a></h6>
-                            <div class="price">
-                                <div>$13.57<span class="price-down">-10%</span></div>
-                                <span class="price-old">$15.00</span>
-                            </div>
-                            <div class="rating">
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star-half-o"></i>
-                                <i class="ace-icon fa fa-star-o"></i>
-                                <a href="#">(5 reviews)</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-md-3 hidden-xs box-product-outer">
-                        <div class="box-product">
-                            <div class="img-wrapper">
-                                <a href="detail.html">
-                                    <img alt="Product" src="https://bootdey.com/img/Content/avatar/avatar3.png">
-                                </a>
-                                <div class="tags">
-                                    <span class="label-tags"><span class="label label-danger">Sale</span></span>
-                                    <span class="label-tags"><span class="label label-success">Collection</span></span>
-                                </div>
-                                <div class="option">
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Add to Cart"><i class="ace-icon fa fa-shopping-cart"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Compare"><i class="ace-icon fa fa-align-left"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Wishlist"><i class="ace-icon fa fa-heart"></i></a>
-                                </div>
-                            </div>
-                            <h6><a href="detail.html">WranglerBlack V Neck T Shirt</a></h6>
-                            <div class="price">
-                                <div>$12.00<span class="price-down">-10%</span></div>
-                                <span class="price-old">$15.00</span>
-                            </div>
-                            <div class="rating">
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star-half-o"></i>
-                                <i class="ace-icon fa fa-star-o"></i>
-                                <a href="#">(5 reviews)</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-md-3 hidden-sm hidden-xs box-product-outer">
-                        <div class="box-product">
-                            <div class="img-wrapper">
-                                <a href="detail.html">
-                                    <img alt="Product" src="https://bootdey.com/img/Content/avatar/avatar1.png">
-                                </a>
-                                <div class="tags">
-                                    <span class="label-tags"><span class="label label-danger">Sale</span></span>
-                                    <span class="label-tags"><span class="label label-success">Collection</span></span>
-                                </div>
-                                <div class="option">
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Add to Cart"><i class="ace-icon fa fa-shopping-cart"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Compare"><i class="ace-icon fa fa-align-left"></i></a>
-                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Wishlist"><i class="ace-icon fa fa-heart"></i></a>
-                                </div>
-                            </div>
-                            <h6><a href="detail.html">Tagd New YorkGrey Printed V Neck T-Shirts</a></h6>
-                            <div class="price">
-                                <div>$8.09<span class="price-down">-10%</span></div>
-                                <span class="price-old">$15.00</span>
-                            </div>
-                            <div class="rating">
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star"></i>
-                                <i class="ace-icon fa fa-star-half-o"></i>
-                                <i class="ace-icon fa fa-star-o"></i>
-                                <a href="#">(5 reviews)</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Pagination -->
-            <div class="row">
-                <div class="col-sm-12">
 
-                    <ul class="pagination pull-right">
-                        <li class="disabled"><a href="#">«</a></li>
-                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
+                                <div class="price">
+                                    <div th:text="${product.getCost()}"><span class="price-down" th:text="${product.getDiscount()}"></span></div>
+                                    <span class="price-old" th:text="${product.getPrice()}"></span>
+                                </div>
+                                <div class="rating">
+                                    <i class="ace-icon fa fa-star"></i>
+                                    <i class="ace-icon fa fa-star"></i>
+                                    <i class="ace-icon fa fa-star"></i>
+                                    <i class="ace-icon fa fa-star"></i>
+                                    <i class="ace-icon fa fa-star-half-o"></i>
+                                    <span th:text="${product.getNumberOfViews}"></span>
+                                </div>
+                            </div>
+                        </div>
 
-                </div>
+                    </th>
+                    <!-- Pagination -->
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <ul class="pagination pull-right">
+                                <li class="disabled"><a href="#">«</a></li>
+                                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">»</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <!-- / .row -->
+
+                </div> <!-- / .col-sm-8 -->
             </div> <!-- / .row -->
-
-        </div> <!-- / .col-sm-8 -->
-    </div> <!-- / .row -->
+        </div>
+    </div>
 </div>
 </body>
 

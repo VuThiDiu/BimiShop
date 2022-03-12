@@ -66,20 +66,19 @@ function SellingController(){
 //                            if(SellingController.prototype.validateForm() == true){
                                 if(1){
                                 // all information about product
-//                               let description = $("#description").val();
-//                               let quantityInStock = parseInt($("#quantityInStock").val());
-//                               let cost = parseInt($("#cost").val());
-//                               let address = $("#address").val();
-//                               let discount = parseInt($("#discount").val());
+                               let description = $("#description").val();
+                               let quantityInStock = parseInt($("#quantityInStock").val());
+                               let cost = parseInt($("#cost").val());
+                               let address = $("#address").val();
+                               let discount = parseInt($("#discount").val());
                                let userId = loginResponse.id;
-                               let dateTime = new Date();
                                var uploadProduct ={
                                    "userId" : userId,
-                                   "description" : "abc",
-                                   "quantityInStock" : 10,
-                                   "price" : 10,
+                                   "description" : description,
+                                   "quantityInStock" : quantityInStock,
+                                   "price" : cost,
                                    "dateTime" : new Date(),
-                                   "discount" : 10,
+                                   "discount" : discount,
                                    "address" : "Ha Noi"
                                }
                                SellingController.prototype.uploadProduct(loginResponse, uploadProduct);
@@ -243,6 +242,7 @@ SellingController.prototype.tagController = function(){
             let labelColor = document.createElement("label");
            labelColor.classList.add("shop-filter__color");
            labelColor.style.backgroundColor = color;
+           if(color == "white") labelColor.classList.add("color-white");
            tagColors.appendChild(labelColor);
        }
        }

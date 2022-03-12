@@ -42,6 +42,8 @@ public class Product {
 
     private long numberOfViews;
 
+    private long numberOfSold;
+
     private String address;
 
     public Product() {

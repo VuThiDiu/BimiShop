@@ -59,13 +59,16 @@ body{margin-top:20px;}
 .shop-filter__color input[type="text"] {
   display: none;
 }
+.color-white{
+    border : 1px solid #efefef;
+}
 .shop-filter__color {
   display: inline-block;
   margin: 0 2px 2px 0;
   width: 30px;
   height: 30px;
   background: transparent;
-  border : 1px solid #dedede;
+
   cursor: pointer;
   margin-right : 10px;
 }

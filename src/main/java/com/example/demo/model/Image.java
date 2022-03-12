@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -16,6 +18,7 @@ public class Image {
     private String id;
 
     @ManyToOne
+    @EqualsAndHashCode.Exclude @ToString.Exclude
     @JoinColumn(name = "productid")
     private Product product;
 
@@ -30,5 +33,8 @@ public class Image {
         this.urlImage = urlImage;
         this.tagCategory = tagCategory;
         this.tagColor = tagColor;
+    }
+
+    public Image() {
     }
 }
