@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/api")
 public class ImageController {
@@ -19,10 +21,12 @@ public class ImageController {
     ImageService imageService;
 
     @PostMapping("/upload_image")
-    public ResponseEntity uploadFile(@RequestBody UploadImage uploadImage) {
+    public ResponseEntity uploadFile(@RequestBody List<UploadImage> uploadImage) {
             try {
-                Image img = new Image(new Product(uploadImage.getProductId()),uploadImage.getImageUrl(),  uploadImage.getTagCategory(), uploadImage.getTagColor());
-                imageService.saveImage(img);
+                for(UploadImage image : uploadImage){
+                    Image img = new Image(new Product(image.getProductId()),image.getImageUrl(),  image.getTagCategory(), image.getTagColor());
+                    imageService.saveImage(img);
+                }
                 return new ResponseEntity("Successfully", HttpStatus.OK);
             } catch (Exception e) {
                 return new ResponseEntity("Can't upload image", HttpStatus.EXPECTATION_FAILED);

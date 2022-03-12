@@ -107,6 +107,7 @@ SellingController.prototype.uploadProduct = function(loginResponse, uploadProduc
                 if(response.status==200){
                     let productId = response.responseText;
                     let allImage = document.images;
+                    var images = [];
                     for(image of allImage){
                         let dataUrl = image.src;
                         let node = image.parentNode.getElementsByClassName("cite")[0];
@@ -118,8 +119,9 @@ SellingController.prototype.uploadProduct = function(loginResponse, uploadProduc
                            "tagCategory" : tagCategory,
                            "tagColor" : tagColor
                        }
-                        SellingController.prototype.uploadImage(loginResponse, uploadImage);
+                       images.push(uploadImage);
                     }
+                    SellingController.prototype.uploadImage(loginResponse, images);
                 }else{
                     alert("user not existed or password is wrong");
                 }
@@ -196,7 +198,6 @@ SellingController.prototype.buttonReload = function(){
                     }
                     let node = this.parentNode.parentNode.parentNode;
                     let category = node.getElementsByClassName('text-center')[0].textContent;
-//                    let color = node.getElementsByClassName("color_tag")[0].style.backgroundColor;
                     let id = node.id;
                     $(".modal-body #edit_tagCategory").val(category);
                     $(".modal-body#id").val(id);
