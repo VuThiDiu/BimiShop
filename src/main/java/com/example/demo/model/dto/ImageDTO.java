@@ -8,8 +8,8 @@ public class ImageDTO {
     private String id;
     private String productId;
     private String urlImage;
-    private int tagCategory;
-    private int tagColor;
+    private String tagCategory;
+    private String tagColor;
 
     public static ImageDTO from (Image  image){
         ImageDTO imageDTO = new ImageDTO();

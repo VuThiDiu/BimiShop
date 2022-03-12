@@ -21,8 +21,14 @@ public class Image {
 
     private String urlImage;
 
-    private int tagCategory;
+    private String tagCategory;
 
-    private int tagColor;
+    private String tagColor;
 
+    public Image(Product product, String urlImage, String tagCategory, String tagColor) {
+        this.product = product;
+        this.urlImage = urlImage;
+        this.tagCategory = tagCategory;
+        this.tagColor = tagColor;
+    }
 }

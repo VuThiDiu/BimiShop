@@ -28,9 +28,8 @@ function SellingController(){
                                                                        "<span class=\"button_delete\" data-toggle=\"tooltip\" data-placement=\"bottom\"><i class=\"fa fa-trash-o fa-lg\"></i></span> "+
                                                                    "</div>").insertAfter(figCapColor);
                                     // option for edit and remove
-
+                                    let img = document.createElement("img");
                                     reader.onload = () =>{
-                                        let img = document.createElement("img");
                                         img.setAttribute("src", reader.result);
                                         img.classList.add('center');
                                         figure.appendChild(img);
@@ -40,7 +39,7 @@ function SellingController(){
                                     reader.readAsDataURL(i);
                                     let formData = new FormData();
                                     formData.append("file", i);
-                                    SellingController.prototype.AutoTaggingAPI(formData, loginResponse, figCap, figCapColor);
+                                    SellingController.prototype.AutoTaggingAPI(formData, loginResponse, figCap, figCapColor, img);
                             }
 
                     }else{
@@ -64,12 +63,28 @@ function SellingController(){
                             );
 
                         $("button#saveButton").on("click", function(){
-                            if(SellingController.prototype.validateForm() == true){
-                                // upload image into firebase
-
+//                            if(SellingController.prototype.validateForm() == true){
+                                if(1){
+                                // all information about product
+//                               let description = $("#description").val();
+//                               let quantityInStock = parseInt($("#quantityInStock").val());
+//                               let cost = parseInt($("#cost").val());
+//                               let address = $("#address").val();
+//                               let discount = parseInt($("#discount").val());
+                               let userId = loginResponse.id;
+                               let dateTime = new Date();
+                               var uploadProduct ={
+                                   "userId" : userId,
+                                   "description" : "abc",
+                                   "quantityInStock" : 10,
+                                   "price" : 10,
+                                   "dateTime" : new Date(),
+                                   "discount" : 10,
+                                   "address" : "Ha Noi"
+                               }
+                               SellingController.prototype.uploadProduct(loginResponse, uploadProduct);
                             }
-
-                        })
+                        });
             }else{
                 alert ("Login plz");
                 window.location.replace("/login");
@@ -77,8 +92,63 @@ function SellingController(){
 
 
 }
+SellingController.prototype.uploadProduct = function(loginResponse, uploadProduct){
+    $.ajax({
+                method:"post",
+                url: "http://localhost:8080/api/upload_product",
+                headers:{
+                    "Authorization": `Bearer ${loginResponse.accessToken}`,
+                },
+                data:JSON.stringify(uploadProduct),
+                dataType:"json",
+                contentType: 'application/json',
+            })
+            .fail(function(response){
+                if(response.status==200){
+                    let productId = response.responseText;
+                    let allImage = document.images;
+                    for(image of allImage){
+                        let dataUrl = image.src;
+                        let node = image.parentNode.getElementsByClassName("cite")[0];
+                        let tagCategory = node.getElementsByClassName("text-center")[0].innerText;
+                        let tagColor = node.getElementsByClassName("color_tag")[0].style.backgroundColor;
+                        var uploadImage ={
+                           "imageUrl" : dataUrl,
+                           "productId" : productId,
+                           "tagCategory" : tagCategory,
+                           "tagColor" : tagColor
+                       }
+                        SellingController.prototype.uploadImage(loginResponse, uploadImage);
+                    }
+                }else{
+                    alert("user not existed or password is wrong");
+                }
+            });
+}
+
+SellingController.prototype.uploadImage = function(loginResponse, uploadImage){
+    $.ajax({
+                method:"post",
+                url: `http://localhost:8080/api/upload_image`,
+                headers:{
+                    "Authorization": `Bearer ${loginResponse.accessToken}`,
+                },
+                data:JSON.stringify(uploadImage),
+                dataType:"json",
+                contentType: 'application/json',
+            })
+            .fail(function(response){
+                if(response.status == 200){
+                    alert("create product successfully");
+                }else{
+                    alert("fail to upload images");
+                }
+
+            });
+}
+
 SellingController.prototype.validateForm = function(){
-    if(document.querySelectorAll("image_tag").length <= 0){
+    if(document.querySelectorAll(".image_tag").length <= 0){
         alert("Missing photos");
         return false;
     }
@@ -175,7 +245,7 @@ SellingController.prototype.tagController = function(){
            tagColors.appendChild(labelColor);
        }
        }
-SellingController.prototype.AutoTaggingAPI = function(fileInput, loginResponse, figCap, figCapColor){
+SellingController.prototype.AutoTaggingAPI = function(fileInput, loginResponse, figCap, figCapColor, image){
     $.ajax({
             method:"post",
             url: "http://localhost:8080/api/get_tagImage",
@@ -189,6 +259,7 @@ SellingController.prototype.AutoTaggingAPI = function(fileInput, loginResponse, 
         .done(function(response){
             figCap.innerText = response.tagCategory;
             figCapColor.style.backgroundColor = response.tagColor;
+            image.src = response.imageUrl;
             SellingController.prototype.tagController();
             SellingController.prototype.buttonReload();
         })

@@ -1,32 +1,34 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.UploadImage;
+import com.example.demo.model.Image;
+import com.example.demo.model.Product;
 import com.example.demo.service.IImageService;
+import com.example.demo.service.impl.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/api")
 public class ImageController {
+
+
     @Autowired
-    IImageService imageService;
+    ImageService imageService;
 
     @PostMapping("/upload_image")
-    public ResponseEntity uploadFile(@RequestParam(name = "file") MultipartFile[] files) {
-        for (MultipartFile file : files) {
+    public ResponseEntity uploadFile(@RequestBody UploadImage uploadImage) {
             try {
-                String fileName = imageService.save(file);
-                String imageUrl = imageService.getImageUrl(fileName);
-                System.out.println(imageUrl);
+                Image img = new Image(new Product(uploadImage.getProductId()),uploadImage.getImageUrl(),  uploadImage.getTagCategory(), uploadImage.getTagColor());
+                imageService.saveImage(img);
+                return new ResponseEntity("Successfully", HttpStatus.OK);
             } catch (Exception e) {
-                System.out.println(e);
+                return new ResponseEntity("Can't upload image", HttpStatus.EXPECTATION_FAILED);
             }
-        }
-
-        return ResponseEntity.ok().build();
     }
+
 }

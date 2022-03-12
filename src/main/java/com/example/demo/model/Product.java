@@ -1,13 +1,13 @@
 package com.example.demo.model;
 
 
+import com.example.demo.dto.UploadProduct;
+import com.google.api.client.util.DateTime;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
-import org.joda.time.DateTime;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Date;
+
 import java.util.List;
 
 @Entity
@@ -32,7 +32,7 @@ public class Product {
 
     private double price;
 
-    private DateTime  dateTime;
+    private DateTime dateTime;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Image> imageList;
@@ -43,4 +43,23 @@ public class Product {
     private long numberOfViews;
 
     private String address;
+
+    public Product() {
+    }
+
+    public Product(String id) {
+        this.id = id;
+    }
+    public static Product from (UploadProduct uploadProduct){
+        Product product = new Product();
+        product.setUser(new User(uploadProduct.getUserId()));
+        product.setQuantityInStock(uploadProduct.getQuantityInStock());
+        product.setPrice(uploadProduct.getPrice());
+        product.setDateTime(uploadProduct.getDateTime());
+        product.setDiscount(uploadProduct.getDiscount());
+        product.setAddress(uploadProduct.getAddress());
+        product.setDescription(uploadProduct.getDescription());
+        return product;
+    }
+
 }

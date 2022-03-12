@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class TagResponse {
+    private String imageUrl;
     private String tagCategory;
     private String tagColor;
 
