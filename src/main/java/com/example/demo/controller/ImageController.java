@@ -15,8 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/api")
 public class ImageController {
-
-
     @Autowired
     ImageService imageService;
 

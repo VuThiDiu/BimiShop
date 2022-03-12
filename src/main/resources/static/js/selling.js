@@ -39,9 +39,9 @@ function SellingController(){
                                     reader.readAsDataURL(i);
                                     let formData = new FormData();
                                     formData.append("file", i);
-                                    SellingController.prototype.AutoTaggingAPI(formData, loginResponse, figCap, figCapColor, img);
+                                    SellingController.prototype.AutoTaggingAPI(formData, loginResponse, figCap, figCapColor);
+                                    SellingController.prototype.generateImageUrl(formData, loginResponse,img);
                             }
-
                     }else{
                         alert("At most 10 files at times");
                     }
@@ -245,7 +245,7 @@ SellingController.prototype.tagController = function(){
            tagColors.appendChild(labelColor);
        }
        }
-SellingController.prototype.AutoTaggingAPI = function(fileInput, loginResponse, figCap, figCapColor, image){
+SellingController.prototype.AutoTaggingAPI = function(fileInput, loginResponse, figCap, figCapColor){
     $.ajax({
             method:"post",
             url: "http://localhost:8080/api/get_tagImage",
@@ -259,13 +259,30 @@ SellingController.prototype.AutoTaggingAPI = function(fileInput, loginResponse, 
         .done(function(response){
             figCap.innerText = response.tagCategory;
             figCapColor.style.backgroundColor = response.tagColor;
-            image.src = response.imageUrl;
             SellingController.prototype.tagController();
             SellingController.prototype.buttonReload();
         })
         .fail(function(response){
             alert("fail to upload image");
             SellingController.prototype.buttonReload();
+        });
+}
+SellingController.prototype.generateImageUrl = function(fileInput, loginResponse, image){
+    $.ajax({
+            method:"post",
+            url: "http://localhost:8080/api/create_imageUrl",
+            headers:{
+                "Authorization": `Bearer ${loginResponse.accessToken}`,
+            },
+            data:fileInput,
+            processData: false,
+            contentType: false
+        })
+        .done(function(response){
+            image.src = response;
+        })
+        .fail(function(response){
+            alert("${response.responseText}");
         });
 
 }
