@@ -686,6 +686,7 @@ background-color: #337ab7
     opacity: 1;
     filter: alpha(opacity=100)
 }
+
 .box-product .img-wrapper .tags > .label-tags a:hover { text-decoration: none }
 .box-product .img-wrapper > .option {
     position: absolute;
@@ -723,6 +724,14 @@ background-color: #337ab7
     padding: 2px 5px;
     color: #fff;
     background: #f44336
+}
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: #bbb;
+  margin-left: 12px;
+  border-radius: 50%;
+  display: inline-block;
 }
 .price-old {
     position: relative;

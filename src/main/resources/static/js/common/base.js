@@ -18,6 +18,28 @@ function BaseController(){
             $("#btn-sale").click(function(){
                     BaseController.prototype.SalePageRequest(loginResponse);
             });
+            var priceBtn = document.forms[0];
+            for (let i = 0 ; i< priceBtn.length; i++){
+                priceBtn[i].addEventListener('click', function(){
+                    if(i == 3){
+                        priceBtn[4].disabled =  false;
+                        priceBtn[5].disabled =  false;
+                    }
+                    if(i < 3){
+                        priceBtn[4].disabled =  true;
+                        priceBtn[5].disabled =  true;
+                    }
+                    if(i>=13){
+                        priceBtn[13].nextElementSibling.style.border = "1px solid #e8caca";
+                        for(let i = 14; i < priceBtn.length; i++){
+                            priceBtn[i].nextElementSibling.style.border = "none";
+                        }
+                        priceBtn[i].nextElementSibling.style.border = "2px solid #337ab7";
+                    }
+                })
+            }
+
+
         }else{
             alert ("Login plz");
             window.location.replace("/login");

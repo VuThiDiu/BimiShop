@@ -63,8 +63,7 @@ function SellingController(){
                             );
 
                         $("button#saveButton").on("click", function(){
-//                            if(SellingController.prototype.validateForm() == true){
-                                if(1){
+                            if(SellingController.prototype.validateForm() == true){
                                 // all information about product
                                let description = $("#description").val();
                                let quantityInStock = parseInt($("#quantityInStock").val());

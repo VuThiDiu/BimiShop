@@ -52,7 +52,7 @@ public class ProductDTO {
         }
         productDTO.setTagCategories(tagCategories);
         productDTO.setTagColors(tagColors);
-        productDTO.setCost(product.getPrice()*( 1 - (productDTO.getDiscount()/10)));
+        productDTO.setCost(product.getPrice()*( 1 - (product.getDiscount()/100.0)));
 
         return productDTO;
     }
