@@ -18,6 +18,7 @@ function BaseController(){
             $("#btn-sale").click(function(){
                     BaseController.prototype.SalePageRequest(loginResponse);
             });
+            var color;
             var priceBtn = document.forms[0];
             for (let i = 0 ; i< priceBtn.length; i++){
                 priceBtn[i].addEventListener('click', function(){
@@ -35,9 +36,27 @@ function BaseController(){
                             priceBtn[i].nextElementSibling.style.border = "none";
                         }
                         priceBtn[i].nextElementSibling.style.border = "2px solid #337ab7";
+                        color = priceBtn[i].defaultValue;
                     }
+
                 })
             }
+            var costFrom = 0;
+            var costTo;
+            var category;
+            var color;
+            $("button.search").on("click", function(){
+                var price = $('input[name="shop-filter__price"]:checked').val();
+                var category = $('input[name="shop-filter__radio"]:checked').val();
+                switch (price){
+                    case "<100" : costTo = 100 ; break;
+                    case "100<x<200" : costFrom = 100; costTo = 200; break;
+                    case "200<x<500" : costFrom = 200; costTo = 500; break;
+                    case "specify" : costFrom = $("#shop-filter-price_from").val();
+                                     costTo = $("#shop-filter-price_to").val();
+                }
+            console.log(color);
+            })
 
 
         }else{

@@ -686,7 +686,9 @@ background-color: #337ab7
     opacity: 1;
     filter: alpha(opacity=100)
 }
-
+.label-tags{
+    margin-right : 10px;
+}
 .box-product .img-wrapper .tags > .label-tags a:hover { text-decoration: none }
 .box-product .img-wrapper > .option {
     position: absolute;
@@ -717,7 +719,14 @@ background-color: #337ab7
 .box-product h6 a { line-height: 1.4 }
 .price {
     margin-bottom: 5px;
-    color: #f44336
+    color: #f44336;
+    display: flex;
+    margin-top: 5%;
+}
+.tag-cate{
+    position: absolute;
+    top:0px;
+    right:0px;
 }
 .price .price-down {
     margin-left: 5px;
