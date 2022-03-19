@@ -59,31 +59,31 @@
                     <span>Thể loại</span>
                 </h3>
                 <div class="radio">
-                    <input type="radio" name="shop-filter__radio" id="shop-filter-radio_1" value="Tshirt">
+                    <input type="radio" name="shop-filter__radio" id="shop-filter-radio_1" value="Áo Phông">
                     <label for="shop-filter-radio_1">Áo phông</label>
                 </div>
                 <div class="radio">
-                    <input type="radio" name="shop-filter__radio" id="shop-filter-radio_2" value="shirt">
+                    <input type="radio" name="shop-filter__radio" id="shop-filter-radio_2" value="Áo Sơ Mi">
                     <label for="shop-filter-radio_2">Áo sơ mi</label>
                 </div>
                 <div class="radio">
-                    <input type="radio" name="shop-filter__radio" id="shop-filter-radio_3" value="sweat">
+                    <input type="radio" name="shop-filter__radio" id="shop-filter-radio_3" value="Áo Nỉ">
                     <label for="shop-filter-radio_3">Áo nỉ</label>
                 </div>
                 <div class="radio">
-                    <input type="radio" name="shop-filter__radio" id="shop-filter-radio_4" value="jacket">
+                    <input type="radio" name="shop-filter__radio" id="shop-filter-radio_4" value="Áo Khoác">
                     <label for="shop-filter-radio_4">Áo khoác</label>
                 </div>
                 <div class="radio">
-                    <input type="radio" name="shop-filter__radio" id="shop-filter-radio_5" value="dress">
+                    <input type="radio" name="shop-filter__radio" id="shop-filter-radio_5" value="Váy">
                     <label for="shop-filter-radio_5">Váy</label>
                 </div>
                 <div class="radio">
-                    <input type="radio" name="shop-filter__radio" id="shop-filter-radio_6" value="jeans">
+                    <input type="radio" name="shop-filter__radio" id="shop-filter-radio_6" value="Quần Dài">
                     <label for="shop-filter-radio_6">Quần dài</label>
                 </div>
                 <div class="radio">
-                    <input type="radio" name="shop-filter__radio" id="shop-filter-radio_7" value="short">
+                    <input type="radio" name="shop-filter__radio" id="shop-filter-radio_7" value="Quần Short">
                     <label for="shop-filter-radio_7">Quần short</label>
                 </div>
 
@@ -148,7 +148,7 @@
                 <div class="col-md-10">
                     <th th:if="${!products.isEmpty()}" th:each="product, iter:${products}">
                         <div class="col-sm-4 col-md-3 box-product-outer">
-                            <div class="box-product">
+                            <a class="box-product" th:href="@/api/detail/${product.getId}}">
                                 <div class="img-wrapper">
                                     <a>
                                         <img  th:if="${!product.getImages.isEmpty()}" th:src="${product.getImages().get(0).getUrlImage()}" style="height: 270px; width:200px; transform : scale(1.4)">
@@ -185,27 +185,11 @@
                                     <i class="ace-icon fa fa-star-half-o"></i>
                                     <span th:text="${product.getNumberOfViews}"></span>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                     </th>
                     <!-- Pagination -->
-                    <div class="row">
-                        <div class="col-sm-12">
-
-                            <ul class="pagination pull-right">
-                                <li class="disabled"><a href="#">«</a></li>
-                                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">»</a></li>
-                            </ul>
-
-                        </div>
-                    </div>
-                    <!-- / .row -->
 
                 </div> <!-- / .col-sm-8 -->
             </div> <!-- / .row -->

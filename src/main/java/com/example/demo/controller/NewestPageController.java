@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.SearchForm;
 import com.example.demo.model.Product;
 import com.example.demo.model.dto.ProductDTO;
 import com.example.demo.service.impl.ProductService;
@@ -18,22 +19,27 @@ import java.util.List;
 @RequestMapping("/api")
 
 public class NewestPageController {
+
     @Autowired
     ProductService productService;
     @GetMapping("/newest")
-    public String getNewestPage(@RequestParam(defaultValue = "0" )int pageNumber,
-                                    @RequestParam(defaultValue = "10") int pageSize, Model model){
-        Page<Product> pagedResult = productService.listProduct(pageNumber, pageSize, "dateTime");
-        List<Product> products = new ArrayList<Product>();
-        if(pagedResult.hasContent()){
-            products =  pagedResult.getContent();
-        }
+    public String getHome(Model model,
+                          @RequestParam (required = false) Integer costFrom,
+                          @RequestParam (required = false) Integer costTo,
+                          @RequestParam (required = false) String category,
+                          @RequestParam (required = false) String color
+    ){
+        if(costFrom == null) costFrom = 0;
+        if(costTo == null) costTo = 0;
+        if(category == null || category.equals("null")) category = "%";
+        if(color == null || color.equals("null")) color = "%";
+        SearchForm searchForm = new SearchForm(costFrom, costTo,  category, color);
+        List<Product> products = productService.listProduct("date_time", searchForm);
         List<ProductDTO> productDTOS = new ArrayList<>();
         for(Product product :products){
             productDTOS.add(ProductDTO.from(product));
         }
         model.addAttribute("products", productDTOS);
-        model.addAttribute("totalPage", pagedResult.getTotalPages());
         return "newest";
     }
 }
