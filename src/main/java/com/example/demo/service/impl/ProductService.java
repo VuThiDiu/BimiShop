@@ -26,4 +26,13 @@ public class ProductService {
             return productRepository.listProductAllPrice(sortBy, searchForm.getCategory(), searchForm.getColor());
         }
     }
+    public Product getProduct(String id){
+        return productRepository.getById(id);
+    }
+
+    public void updateViewProductById(String id) {
+        Product product = productRepository.findById(id).orElse( new Product());
+        product.setNumberOfViews(product.getNumberOfViews() + 1);
+        productRepository.save(product);
+    }
 }

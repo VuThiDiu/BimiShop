@@ -14,5 +14,5 @@ public class UploadProduct {
     private int discount;
     private String address;
     private String description;
-
+    private String title;
 }

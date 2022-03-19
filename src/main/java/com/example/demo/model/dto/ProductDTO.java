@@ -30,6 +30,7 @@ public class ProductDTO {
     private Set<String> tagCategories;
     private Set<String> tagColors;
     private double cost;
+    private String title;
 
     public static ProductDTO from(Product product){
         ProductDTO  productDTO = new ProductDTO();
@@ -53,7 +54,7 @@ public class ProductDTO {
         productDTO.setTagCategories(tagCategories);
         productDTO.setTagColors(tagColors);
         productDTO.setCost(product.getPrice()*( 1 - (product.getDiscount()/100.0)));
-
+        productDTO.setTitle(product.getTitle());
         return productDTO;
     }
 }

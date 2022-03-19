@@ -26,6 +26,8 @@ public class Product {
 
     private int quantityInStock;
 
+    private String title;
+
     private String description;
 
     private int discount;
@@ -61,6 +63,7 @@ public class Product {
         product.setDiscount(uploadProduct.getDiscount());
         product.setAddress(uploadProduct.getAddress());
         product.setDescription(uploadProduct.getDescription());
+        product.setTitle(uploadProduct.getTitle());
         return product;
     }
 

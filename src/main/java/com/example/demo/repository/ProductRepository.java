@@ -12,11 +12,16 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, String> {
-        @Query(value = "select * from product p join image img on p.id = img.productid where (p.discount/100)*p.price between ?2 and ?3 and img.tag_category like ?4 and img.tag_color like ?5 order by ?1 desc", nativeQuery = true)
+        @Query(value = "select * from product p \n" +
+                "where p.id in (select productid from image where tag_color like ?5 and tag_category like ?4)\n" +
+                "and p.price BETWEEN ?2 and ?3\n" +
+                "ORDER BY ?1 desc", nativeQuery = true)
         List<Product> listProduct ( String sortBy, int costFrom, int costTo, String category, String color);
 
 
-        @Query(value = "select * from product p join image img on p.id = img.productid where  img.tag_category like ?2 and img.tag_color like ?3 order by ?1 desc", nativeQuery = true)
+        @Query(value = "select * from product p \n" +
+                "where p.id in (select productid from image where tag_color like ?3 and tag_category like ?2)\n" +
+                "ORDER BY ?1 desc", nativeQuery = true)
         List<Product> listProductAllPrice ( String sortBy, String category, String color);
 
 }

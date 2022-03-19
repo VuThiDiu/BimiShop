@@ -67,7 +67,6 @@ function BaseController(){
         }});
 
 }
-
 BaseController.prototype.HomePageRequest =  function(loginResponse){
         $.ajax({
             method:"get",
