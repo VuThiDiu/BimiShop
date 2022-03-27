@@ -4,36 +4,28 @@ function ProductDetailController(){
         if(window.localStorage.getItem('loginResponse')!=null){
             var loginResponse = JSON.parse(localStorage.getItem("loginResponse"));
             $("#btn-account").click(function(){
-                                ProductDetailController.prototype.AccountPageRequest(loginResponse);
-                        });
-                        $("#btn-popular").click(function(){
-                                ProductDetailController.prototype.HomePageRequest(loginResponse);
-                        });
-                        $("#btn-newest").click(function(){
-                                ProductDetailController.prototype.NewestPageRequest(loginResponse);
-                        });
-                        $("#btn-bestseller").click(function(){
-                                ProductDetailController.prototype.BestSeller(loginResponse);
-                        });
-                        $("#btn-sale").click(function(){
-                                ProductDetailController.prototype.SalePageRequest(loginResponse);
-                        });
+                    ProductDetailController.prototype.AccountPageRequest(loginResponse);
+            });
+            $("#btn-popular").click(function(){
+                    ProductDetailController.prototype.HomePageRequest(loginResponse);
+            });
+            $("#btn-newest").click(function(){
+                    ProductDetailController.prototype.NewestPageRequest(loginResponse);
+            });
+            $("#btn-bestseller").click(function(){
+                    ProductDetailController.prototype.BestSeller(loginResponse);
+            });
+            $("#btn-sale").click(function(){
+                    ProductDetailController.prototype.SalePageRequest(loginResponse);
+            });
+            $(".image_preview").onClick
 
-
-            var id = $("#productId").val();
-            ProductDetailController.prototype.UpdateViewImage(localStorage, id);
 
         }else{
             alert ("Login plz");
             window.location.replace("/login");
         }});
 
-}
-ProductDetailController.prototype.UpdateViewImage = function(localStorage, productId){
-        $.ajax({
-            method:'put',
-            url : `http://localhost:8080/api/view?id=${productId}`
-        })
 }
 ProductDetailController.prototype.HomePageRequest =  function(loginResponse){
         $.ajax({

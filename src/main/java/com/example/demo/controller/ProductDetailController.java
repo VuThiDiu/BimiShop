@@ -18,13 +18,9 @@ public class ProductDetailController {
     @GetMapping("/detail/{id}")
     public String getProductDetail(Model model, @PathVariable("id") String id){
         Product product = productService.getProduct(id);
+        productService.updateViewProductById(id);
         ProductDTO productDTO = ProductDTO.from(product);
         model.addAttribute("product", productDTO);
         return "productDetail";
-    }
-
-    @PutMapping("/view")
-    public void updateView(@RequestParam String id){
-        productService.updateViewProductById(id);
     }
 }

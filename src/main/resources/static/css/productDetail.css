@@ -45,7 +45,7 @@ img {
 .tab-content {
   overflow: hidden; }
   .tab-content img {
-    width: 100%;
+    width: 60%;
     -webkit-animation-name: opacity;
             animation-name: opacity;
     -webkit-animation-duration: .3s;
@@ -128,27 +128,27 @@ img {
     content: "\f00d";
     color: #fff; }
 
-.orange {
+.color_orange {
   background: orange; }
 
-.green {
+.color_green {
   background: green; }
 
-.blue {
+.color_blue {
   background: blue; }
-.white {
+.color_white {
   background: #f7efef; }
 }
-.black {
+.color_black {
     background: black;
 }
-.yellow {
+.color_yellow {
     background: yellow;
 }
-.gray {
+.color_gray {
     background : gray;
 }
-.pink {
+.color_pink {
     background: pink;
 }
 

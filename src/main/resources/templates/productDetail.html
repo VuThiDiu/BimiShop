@@ -32,13 +32,13 @@
             <div class="wrapper row">
                 <div class="preview col-md-6">
                     <div class="preview-pic tab-content">
-                        <th th:if="${!product.getImages().isEmpty()}" th:each="image, iter: ${product.getImages()}">
-                            <div class="tab-pane" id="pic-${iter.count}" ><img th:src="${image.getUrlImage()}" /></div>
+                        <th th:if="${!product.getImages().isEmpty()}" >
+                            <div class="tab-pane active" ><img th:src="${product.getImages().get(0).getUrlImage()}" /></div>
                         </th>
                     </div>
                     <ul class="preview-thumbnail nav nav-tabs">
                         <th th:if="${!product.getImages().isEmpty()}" th:each="image, iter: ${product.getImages()}">
-                            <li class="active"><a data-target="#pic-${iter.count}" data-toggle="tab"><img th:src="${image.getUrlImage()}" /></a></li>
+                            <li class="image_preview active"><a data-target="#pic-${image.getId()}" data-toggle="tab"><img th:src="${image.getUrlImage()}" /></a></li>
                         </th>
                     </ul>
 
@@ -66,7 +66,7 @@
                     </h5>
                     <h5 class="colors">colors:
                         <th th:if="${!product.getTagColors().isEmpty()}" th:each="color, iter: ${product.getTagColors()}">
-                            <span th:class="'color ' + ${color}"></span>
+                            <span th:class="'color color_' + ${color}"></span>
                         </th>
                     </h5>
                     <div class="action">
