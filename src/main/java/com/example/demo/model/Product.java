@@ -48,6 +48,11 @@ public class Product {
 
     private String address;
 
+    @ManyToMany(mappedBy = "productsInCart")
+    private List<Cart> carts;
+    @ManyToMany(mappedBy = "favProducts")
+    private List<FavProducts> favProducts;
+
     public Product() {
     }
 

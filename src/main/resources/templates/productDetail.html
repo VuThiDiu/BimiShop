@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/productDetail.css}">
     <script type="text/javascript" th:src="@{/js/productDetail.js}"></script>
-    <script type="text/javascript" th:src="@{/js/common/base.js}"></script>
 
 </head>
 
@@ -74,7 +73,7 @@
                         <button class="add-to-cart btn btn-default" type="button">add to cart</button>
                         <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
                     </div>
-                    <input th:value="${product.getId()}" id="productId" style="display: none;"></input>
+                    <input th:value="${product.getId()}" id="productId" style="display: none;">
                 </div>
             </div>
         </div>
