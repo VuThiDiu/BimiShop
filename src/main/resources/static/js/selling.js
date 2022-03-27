@@ -71,6 +71,7 @@ function SellingController(){
                                let address = $("#address").val();
                                let discount = parseInt($("#discount").val());
                                let userId = loginResponse.id;
+                               let title = $("#title").val();
                                var uploadProduct ={
                                    "userId" : userId,
                                    "description" : description,
@@ -78,7 +79,8 @@ function SellingController(){
                                    "price" : cost,
                                    "dateTime" : new Date(),
                                    "discount" : discount,
-                                   "address" : "Ha Noi"
+                                   "address" : "Ha Noi",
+                                   "title": title
                                }
                                SellingController.prototype.uploadProduct(loginResponse, uploadProduct);
                             }

@@ -18,7 +18,8 @@ function BaseController(){
             $("#btn-sale").click(function(){
                     BaseController.prototype.SalePageRequest(loginResponse);
             });
-            var color;
+            var color = null;
+            var category = null;
             var priceBtn = document.forms[0];
             for (let i = 0 ; i< priceBtn.length; i++){
                 priceBtn[i].addEventListener('click', function(){
@@ -42,31 +43,30 @@ function BaseController(){
                 })
             }
             var costFrom = 0;
-            var costTo;
-            var category;
-            var color;
+            var costTo = 0;
             $("button.search").on("click", function(){
                 var price = $('input[name="shop-filter__price"]:checked').val();
-                var category = $('input[name="shop-filter__radio"]:checked').val();
+                if($('input[name="shop-filter__radio"]:checked').length > 0)
+                 category = $('input[name="shop-filter__radio"]:checked').val();
                 switch (price){
-                    case "<100" : costTo = 100 ; break;
-                    case "100<x<200" : costFrom = 100; costTo = 200; break;
-                    case "200<x<500" : costFrom = 200; costTo = 500; break;
+                    case "<100" : costTo = 100000 ; break;
+                    case "100<x<200" : costFrom = 100000; costTo = 200000; break;
+                    case "200<x<500" : costFrom = 200000; costTo = 500000; break;
                     case "specify" : costFrom = $("#shop-filter-price_from").val();
                                      costTo = $("#shop-filter-price_to").val();
                 }
-            console.log(color);
+                if (category == null && costTo == 0 && color == null){
+                    alert("Không có thông tin tìm kiếm");
+                }else {
+                    window.location.replace(`home?costFrom=${costFrom}&costTo=${costTo}&category=${category}&color=${color}`);
+                }
             })
-
-
         }else{
             alert ("Login plz");
             window.location.replace("/login");
         }});
 
 }
-
-
 BaseController.prototype.HomePageRequest =  function(loginResponse){
         $.ajax({
             method:"get",

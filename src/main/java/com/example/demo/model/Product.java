@@ -26,6 +26,8 @@ public class Product {
 
     private int quantityInStock;
 
+    private String title;
+
     private String description;
 
     private int discount;
@@ -46,6 +48,11 @@ public class Product {
 
     private String address;
 
+    @ManyToMany(mappedBy = "productsInCart")
+    private List<Cart> carts;
+    @ManyToMany(mappedBy = "favProducts")
+    private List<FavProducts> favProducts;
+
     public Product() {
     }
 
@@ -61,6 +68,7 @@ public class Product {
         product.setDiscount(uploadProduct.getDiscount());
         product.setAddress(uploadProduct.getAddress());
         product.setDescription(uploadProduct.getDescription());
+        product.setTitle(uploadProduct.getTitle());
         return product;
     }
 
