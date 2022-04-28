@@ -1,7 +1,15 @@
+
+
 function SellingController(){
     $(function loadData(){
             if(window.localStorage.getItem('loginResponse')!=null){
                 var loginResponse = JSON.parse(localStorage.getItem("loginResponse"));
+
+                // load for autoTaggingSystemToken
+                var urlPath = $('#autoTaggingSystemPath').val();
+                var autoTaggingSystemToken = JSON.parse(localStorage.getItem("autoTaggingSystemToken"));
+
+
                 let fileInput = document.getElementById("file-input");
                 let imageContainer = document.getElementById("images");
                 let numOfFiles = document.getElementById("num-of-files");
@@ -37,10 +45,11 @@ function SellingController(){
                                     }
                                     imageContainer.appendChild(figure);
                                     reader.readAsDataURL(i);
+//                                    imageURL = URL.createObjectURL(i);
+//                                    $("#preview").attr("src", imageURL);
                                     let formData = new FormData();
                                     formData.append("file", i);
-                                    SellingController.prototype.AutoTaggingAPI(formData, loginResponse, figCap, figCapColor);
-                                    SellingController.prototype.generateImageUrl(formData, loginResponse,img);
+                                    SellingController.prototype.AutoTaggingAPI(formData, autoTaggingSystemToken, urlPath, img,  figCap, figCapColor);
                             }
                     }else{
                         alert("At most 10 files at times");
@@ -95,7 +104,7 @@ function SellingController(){
 SellingController.prototype.uploadProduct = function(loginResponse, uploadProduct){
     $.ajax({
                 method:"post",
-                url: "http://localhost:8080/api/upload_product",
+                url: `/api/upload_product`,
                 headers:{
                     "Authorization": `Bearer ${loginResponse.accessToken}`,
                 },
@@ -123,7 +132,7 @@ SellingController.prototype.uploadProduct = function(loginResponse, uploadProduc
                     }
                     SellingController.prototype.uploadImage(loginResponse, images);
                 }else{
-                    alert("user not existed or password is wrong");
+                    alert("Error");
                 }
             });
 }
@@ -131,7 +140,7 @@ SellingController.prototype.uploadProduct = function(loginResponse, uploadProduc
 SellingController.prototype.uploadImage = function(loginResponse, uploadImage){
     $.ajax({
                 method:"post",
-                url: `http://localhost:8080/api/upload_image`,
+                url: `/api/upload_image`,
                 headers:{
                     "Authorization": `Bearer ${loginResponse.accessToken}`,
                 },
@@ -142,13 +151,28 @@ SellingController.prototype.uploadImage = function(loginResponse, uploadImage){
             .fail(function(response){
                 if(response.status == 200){
                     alert("create product successfully");
+                    var productId = response.responseText;
+                    SellingController.prototype.productDetail(loginResponse, productId);
                 }else{
                     alert("fail to upload images");
                 }
 
             });
 }
-
+SellingController.prototype.productDetail = function(loginResponse, productId){
+    $.ajax({
+        type:"get",
+        url: `/api/detail/${productId}`,
+        headers:{
+            "Authorization": `Bearer ${loginResponse.accessToken}`,
+        }
+    }).done(function(){
+        window.location.replace(`/api/detail/${productId}`);
+    })
+    .fail(function(response){
+        alert('Error');
+    });
+}
 SellingController.prototype.validateForm = function(){
     if(document.querySelectorAll(".image_tag").length <= 0){
         alert("Missing photos");
@@ -247,48 +271,51 @@ SellingController.prototype.tagController = function(){
            tagColors.appendChild(labelColor);
        }
        }
-SellingController.prototype.AutoTaggingAPI = function(fileInput, loginResponse, figCap, figCapColor){
+
+// using json
+SellingController.prototype.AutoTaggingAPI = function(fileInput, autoTaggingSystemToken,urlPath , image,  figCap, figCapColor){
     $.ajax({
             method:"post",
-            url: "http://localhost:8080/api/get_tagImage",
+            url: urlPath,
             headers:{
-                "Authorization": `Bearer ${loginResponse.accessToken}`,
+                "Authorization": `Bearer ${autoTaggingSystemToken.accessToken}`,
+                "Accept" : "application/json"
             },
+
             data:fileInput,
             processData: false,
-            contentType: false
-        })
-        .done(function(response){
-            figCap.innerText = response.tagCategory;
-            figCapColor.style.backgroundColor = response.tagColor;
-            SellingController.prototype.tagController();
-            SellingController.prototype.buttonReload();
-        })
-        .fail(function(response){
-            alert("fail to upload image");
-            SellingController.prototype.buttonReload();
-        });
-}
-SellingController.prototype.generateImageUrl = function(fileInput, loginResponse, image){
-    $.ajax({
-            method:"post",
-            url: "http://localhost:8080/api/create_imageUrl",
-            headers:{
-                "Authorization": `Bearer ${loginResponse.accessToken}`,
+            contentType: false,
+            success : function(response){
+                    figCap.innerText = response.tagCategory;
+                    color = getColor(response.tagColor);
+                    image.src = response.imageURL;
+//                    $("#preview").attr("src", response.imageURL);
+                    figCapColor.style.backgroundColor = color;
+                    SellingController.prototype.tagController();
+                    SellingController.prototype.buttonReload();
             },
-            data:fileInput,
-            processData: false,
-            contentType: false
+            error: function(e){
+                    alert("fail to upload image");
+                    SellingController.prototype.buttonReload();
+            }
         })
-        .done(function(response){
-            image.src = response;
-        })
-        .fail(function(response){
-            alert("${response.responseText}");
-        });
-
 }
 
+//
+function getColor(color){
+    switch (color){
+        case "trắng" : return "white";
+        case "hồng" : return "pink";
+        case "đỏ" : return "red";
+        case "vàng" : return "yellow";
+        case "xanh dương" : return "blue";
+        case "xám" : return "gray";
+        case "đen" : return "black";
+        case "xanh lá" : return "green";
+    }
+
+
+}
 var sellingController;
 $(document).ready(function(){
     sellingController = new SellingController();

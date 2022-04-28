@@ -10,6 +10,7 @@ import com.example.demo.service.impl.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,6 +25,15 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class LoginController {
+
+    @Value("${autoTaggingSystem.loginPath}")
+    private String loginPath;
+
+    @Value("${autoTaggingSystem.userName}")
+    private String userName;
+
+    @Value("${autoTaggingSystem.password}")
+    private String password;
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
     @Autowired
     AuthenticationManager authenticationManager;
@@ -34,9 +44,12 @@ public class LoginController {
     @GetMapping(value = {"/login", "/", ""})
     public String getLoginForm( Model model, HttpServletRequest httpServletRequest){
         model.addAttribute("loginForm", new UserLogin());
-//        model.addAttribute("url", WebUtils.buildUrlForPaging(httpServletRequest, "/login"));
+        model.addAttribute("url", loginPath);
+        model.addAttribute("userName", userName);
+        model.addAttribute("password", password);
         return "login";
     }
+
     @PostMapping(value = "/login", produces = "application/json")
     public ResponseEntity authentication(@ModelAttribute("loginForm") UserLogin user){
         try{

@@ -23,10 +23,6 @@ public class HomeController {
 
     @Autowired
     ProductService productService;
-    @GetMapping(value = "/test")
-    public String test(@RequestParam int a){
-        return "done";
-    }
     @GetMapping(value = "/home")
     public String getHome(Model model,
                           @RequestParam (required = false) Integer costFrom,

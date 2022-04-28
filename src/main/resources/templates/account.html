@@ -24,6 +24,7 @@
                     <li class="active"><a id="btn-account">Account</a></li>
                 </ul>
                 <h3 class="text-muted Fprj-name">BiMi Shop</h3>
+                <input type="hidden" th:value="${userId}" id="userId">
             </div>
             <hr>
             <div class="row">
@@ -102,7 +103,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4"  id="btn-myProduct">
                     <div class="panel panel-info ">
                         <div class="panel-heading">
                             <div class="row">
@@ -115,14 +116,16 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                            <a>
                             <div class="panel-footer announcement-bottom">
+                                <div class="row">
                                 <div class="row">
                                     <div class="col-xs-6">View</div>
                                     <div class="col-xs-6 text-right">
                                         <i class="fa fa-arrow-circle-right"></i>
                                     </div>
                                 </div>
+                                    </div>
                             </div>
                         </a>
                     </div>

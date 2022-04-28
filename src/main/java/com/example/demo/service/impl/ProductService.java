@@ -30,6 +30,10 @@ public class ProductService {
         return productRepository.getById(id);
     }
 
+    public List<Product> getProductsByUserID(String id){
+        return productRepository.getProductsByUserID(id);
+    }
+
     public void updateViewProductById(String id) {
         Product product = productRepository.findById(id).orElse( new Product());
         product.setNumberOfViews(product.getNumberOfViews() + 1);

@@ -57,12 +57,12 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
         http
                 .cors() // ngan chan request  tu mot domain khac
                 .and()
-//                .authorizeRequests()
-//                .antMatchers("/login", "/register").permitAll()
-//                .antMatchers("/resources/**").permitAll()
-//                .antMatchers("/*.js").permitAll()
-//                .antMatchers("/api/**").authenticated()
-                .authorizeRequests().antMatchers("/").permitAll()
+                .authorizeRequests()
+                .antMatchers("/login", "/register").permitAll()
+                .antMatchers("/resources/**").permitAll()
+                .antMatchers("/*.js").permitAll()
+                .antMatchers("/api/**").authenticated()
+//                .authorizeRequests().antMatchers("/").permitAll()
 
 
 

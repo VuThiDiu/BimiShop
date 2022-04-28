@@ -30,7 +30,7 @@ function ProductDetailController(){
 ProductDetailController.prototype.HomePageRequest =  function(loginResponse){
         $.ajax({
             method:"get",
-            url: `http://localhost:8080/api/home`,
+            url: `/api/home`,
             headers:{
                 "Authorization": `Bearer ${loginResponse.accessToken}`,
             }
@@ -44,7 +44,7 @@ ProductDetailController.prototype.HomePageRequest =  function(loginResponse){
 ProductDetailController.prototype.SalePageRequest =  function(loginResponse){
         $.ajax({
             method:"get",
-            url: `http://localhost:8080/api/sale`,
+            url: `/api/sale`,
             headers:{
                 "Authorization": `Bearer ${loginResponse.accessToken}`,
             }
@@ -58,7 +58,7 @@ ProductDetailController.prototype.SalePageRequest =  function(loginResponse){
 ProductDetailController.prototype.NewestPageRequest =  function(loginResponse){
         $.ajax({
             method:"get",
-            url: `http://localhost:8080/api/newest`,
+            url: `/api/newest`,
             headers:{
                 "Authorization": `Bearer ${loginResponse.accessToken}`,
             }
@@ -72,7 +72,7 @@ ProductDetailController.prototype.NewestPageRequest =  function(loginResponse){
 ProductDetailController.prototype.BestSeller =  function(loginResponse){
         $.ajax({
             method:"get",
-            url: `http://localhost:8080/api/best_seller`,
+            url: `/api/best_seller`,
             headers:{
                 "Authorization": `Bearer ${loginResponse.accessToken}`,
             }
@@ -86,7 +86,7 @@ ProductDetailController.prototype.BestSeller =  function(loginResponse){
 ProductDetailController.prototype.AccountPageRequest =  function(loginResponse){
         $.ajax({
             method:"get",
-            url: `http://localhost:8080/api/account/${loginResponse.id}`,
+            url: `/api/account/${loginResponse.id}`,
             headers:{
                 "Authorization": `Bearer ${loginResponse.accessToken}`,
             }

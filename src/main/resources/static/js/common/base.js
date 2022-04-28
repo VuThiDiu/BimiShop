@@ -70,7 +70,7 @@ function BaseController(){
 BaseController.prototype.HomePageRequest =  function(loginResponse){
         $.ajax({
             method:"get",
-            url: `http://localhost:8080/api/home`,
+            url: `/api/home`,
             headers:{
                 "Authorization": `Bearer ${loginResponse.accessToken}`,
             }
@@ -84,7 +84,7 @@ BaseController.prototype.HomePageRequest =  function(loginResponse){
 BaseController.prototype.SalePageRequest =  function(loginResponse){
         $.ajax({
             method:"get",
-            url: `http://localhost:8080/api/sale`,
+            url: `/api/sale`,
             headers:{
                 "Authorization": `Bearer ${loginResponse.accessToken}`,
             }
@@ -98,7 +98,7 @@ BaseController.prototype.SalePageRequest =  function(loginResponse){
 BaseController.prototype.NewestPageRequest =  function(loginResponse){
         $.ajax({
             method:"get",
-            url: `http://localhost:8080/api/newest`,
+            url: `/api/newest`,
             headers:{
                 "Authorization": `Bearer ${loginResponse.accessToken}`,
             }
@@ -112,7 +112,7 @@ BaseController.prototype.NewestPageRequest =  function(loginResponse){
 BaseController.prototype.BestSeller =  function(loginResponse){
         $.ajax({
             method:"get",
-            url: `http://localhost:8080/api/best_seller`,
+            url: `/api/best_seller`,
             headers:{
                 "Authorization": `Bearer ${loginResponse.accessToken}`,
             }
@@ -126,7 +126,7 @@ BaseController.prototype.BestSeller =  function(loginResponse){
 BaseController.prototype.AccountPageRequest =  function(loginResponse){
         $.ajax({
             method:"get",
-            url: `http://localhost:8080/api/account/${loginResponse.id}`,
+            url: `account/${loginResponse.id}`,
             headers:{
                 "Authorization": `Bearer ${loginResponse.accessToken}`,
             }

@@ -24,4 +24,7 @@ public interface ProductRepository extends JpaRepository<Product, String> {
                 "ORDER BY ?1 desc", nativeQuery = true)
         List<Product> listProductAllPrice ( String sortBy, String category, String color);
 
+
+        @Query(value = "select * from product p where p.userid = ?1 order by date_time desc", nativeQuery = true)
+        List<Product> getProductsByUserID(String userID);
 }
