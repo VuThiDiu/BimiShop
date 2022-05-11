@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>BiMi Shop</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -16,31 +16,28 @@
     <div class="container bootstrap snippets bootdey">
         <div class="header">
             <ul class="nav nav-pills pull-right">
-                <li class="active"><a href="/login">Login</a></li>
-                <li class="inactive"><a href="/register">Register</a></li>
+                <li class="active"><a href="/login">ĐĂNG NHẬP</a></li>
+                <li class="inactive"><a href="/register">ĐĂNG KÝ</a></li>
             </ul>
             <h3 class="text-muted Fprj-name">BiMi Shop</h3>
         </div>
-        <div class="jumbotron text-center" style="min-height:400px;height:auto;">
+        <div class="jumbotron text-center" style="min-height:400px;height:auto; background:#fff">
             <div class="col-md-10 col-md-offset-2">
                 <form class="form-horizontal" role="form" th:action="@{/login}" method="post" th:object="${loginForm}">
                     <div class="form-group text-center">
                         <div class="col-sm-10 reg-icon">
-                            <span class="fa fa-user fa-3x"> Đăng nhập</span>
+                            <span class="fa fa-user fa-3x">ĐĂNG NHẬP</span>
                         </div>
                     </div>
                     <input type="hidden" id="loginPath" th:value="${url}">
-                    <input type="hidden" id="name1" th:value="${userName}">
-                    <input type="hidden" id="pass1" th:value="${password}">
-
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="username" placeholder="User Name" th:field="*{username}" required>
+                            <input type="text" class="form-control" id="username" placeholder="TÊN ĐĂNG NHẬP" th:field="*{username}" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="password" placeholder="Password" th:field="*{password}" required>
+                            <input type="password" class="form-control" id="password" placeholder="MẬT KHẨU" th:field="*{password}" required>
                         </div>
                     </div>
                     <div class="form-group">

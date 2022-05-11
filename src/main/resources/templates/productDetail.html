@@ -19,11 +19,11 @@
 <div class="container">
     <div class="header">
         <ul class="nav nav-pills pull-right">
-            <li class="inactive"><a id="btn-popular">Popular</a></li>
-            <li class="inactive"><a id="btn-newest">Newest</a></li>
-            <li class="inactive"><a id="btn-bestseller">Best-Seller</a></li>
-            <li class="inactive"><a id="btn-sale">Selling</a></li>
-            <li class="inactive"><a id="btn-account">Account</a></li>
+            <li class="inactive"><a id="btn-popular">Phổ biến</a></li>
+            <li class="inactive"><a id="btn-newest">Mới nhất</a></li>
+            <li class="inactive"><a id="btn-bestseller">Bán chạy</a></li>
+            <li class="inactive"><a id="btn-sale">Bán hàng</a></li>
+            <li class="inactive"><a id="btn-account">Tài khoản</a></li>
         </ul>
         <h3 class="text-muted Fprj-name">BiMi Shop</h3>
     </div>
@@ -56,21 +56,21 @@
                         <span class="review-no" th:text="${product.getNumberOfViews()} + ' views' "></span>
                     </div>
                     <p class="product-description" th:text="${product.getDescription()}"></p>
-                    <h4 class="price">current price: <span th:text="${#numbers.formatDecimal(product.getCost(), 0, 'COMMA', 0, 'POINT') + 'đ'}"></span></h4>
-                    <p class="vote" ><strong th:text="${product.getNumberOfSold}"></strong> products are bought</p>
+                    <h4 class="price">GIÁ:  <span th:text="${#numbers.formatDecimal(product.getCost(), 0, 'COMMA', 0, 'POINT') + 'đ'}"></span></h4>
+                    <p class="vote" ><strong th:text="${product.getNumberOfSold}"></strong>  sản phẩm đã được bán</p>
                     <h5 class="sizes">sizes:
                         <span class="size" data-toggle="tooltip" title="small">s</span>
                         <span class="size" data-toggle="tooltip" title="medium">m</span>
                         <span class="size" data-toggle="tooltip" title="large">l</span>
                         <span class="size" data-toggle="tooltip" title="xtra large">xl</span>
                     </h5>
-                    <h5 class="colors">colors:
+                    <h5 class="colors">Màu sắc :
                         <th th:if="${!product.getTagColors().isEmpty()}" th:each="color, iter: ${product.getTagColors()}">
                             <span th:class="'color color_' + ${color}"></span>
                         </th>
                     </h5>
                     <div class="action">
-                        <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                        <button class="add-to-cart btn btn-default" type="button">Thêm vào giỏ</button>
                         <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
                     </div>
                     <input th:value="${product.getId()}" id="productId" style="display: none;">

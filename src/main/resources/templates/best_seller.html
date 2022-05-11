@@ -135,11 +135,11 @@
             <!-- Filters -->
             <div class="header">
                 <ul class="nav nav-pills pull-right">
-                    <li class="inactive"><a id="btn-popular">Popular</a></li>
-                    <li class="inactive"><a id="btn-newest">Newest</a></li>
-                    <li class="active"><a id="btn-bestseller">Best-Seller</a></li>
-                    <li class="inactive"><a id="btn-sale">Selling</a></li>
-                    <li class="inactive"><a id="btn-account">Account</a></li>
+                    <li class="inactive"><a id="btn-popular">Phổ biến</a></li>
+                    <li class="inactive"><a id="btn-newest">Mới nhất</a></li>
+                    <li class="active"><a id="btn-bestseller">Bán chạy</a></li>
+                    <li class="inactive"><a id="btn-sale">Bán hàng</a></li>
+                    <li class="inactive"><a id="btn-account">Tài khoản</a></li>
                 </ul>
                 <h3 class="text-muted Fprj-name">BiMi Shop</h3>
             </div>
@@ -150,7 +150,7 @@
                             <div class="box-product">
                                 <div class="img-wrapper">
                                     <a>
-                                        <img  th:if="${!product.getImages.isEmpty()}" th:src="${product.getImages().get(0).getUrlImage()}" style="height: 270px; width:200px; transform : scale(1.4)">
+                                        <img  th:if="${!product.getImages.isEmpty()}" th:src="${product.getImages().get(0).getUrlImage()}" style="height: 270px; width:200px; transform : scale(1.1)">
                                     </a>
                                     <div class="tag-cate">
                                         <div th:if="${!product.getTagCategories().isEmpty()}" th:each="tag, iter: ${product.getTagCategories}">

@@ -28,12 +28,6 @@ public class LoginController {
 
     @Value("${autoTaggingSystem.loginPath}")
     private String loginPath;
-
-    @Value("${autoTaggingSystem.userName}")
-    private String userName;
-
-    @Value("${autoTaggingSystem.password}")
-    private String password;
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
     @Autowired
     AuthenticationManager authenticationManager;
@@ -45,8 +39,6 @@ public class LoginController {
     public String getLoginForm( Model model, HttpServletRequest httpServletRequest){
         model.addAttribute("loginForm", new UserLogin());
         model.addAttribute("url", loginPath);
-        model.addAttribute("userName", userName);
-        model.addAttribute("password", password);
         return "login";
     }
 
@@ -62,7 +54,8 @@ public class LoginController {
             User user1 = (User) userService.getUserByUserName(user.getUsername());
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String jwt = jwtTokenProvider.generateToken((CustomUserDetails) authentication.getPrincipal());
-            return  new ResponseEntity(new LoginResponse(jwt,  user1.getId(),user1.getUsername()), HttpStatus.OK);
+            String accessTokenAutomaticTaggingSystem = System.getenv("accessTokenAutomaticTaggingSystem");
+            return  new ResponseEntity(new LoginResponse(jwt, accessTokenAutomaticTaggingSystem, user1.getId(),user1.getUsername()), HttpStatus.OK);
         }catch (Exception e){
             LOGGER.debug(e.toString());
         }

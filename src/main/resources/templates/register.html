@@ -14,45 +14,45 @@
 <div class="container bootstrap snippets bootdey">
     <div class="header">
         <ul class="nav nav-pills pull-right">
-            <li class="inactive"><a href="/login">Login</a></li>
-            <li class="active"><a href="/register">Register</a></li>
+            <li class="inactive"><a href="/login">ĐĂNG NHẬP</a></li>
+            <li class="active"><a href="/register">ĐĂNG KÝ</a></li>
         </ul>
         <h3 class="text-muted prj-name">BiMi Shop</h3>
     </div>
 
-    <div class="jumbotron text-center" style="min-height:400px;height:auto;">
+    <div class="jumbotron text-center" style="min-height:400px;height:auto; background: #fff">
         <div class="col-md-10 col-md-offset-2">
             <form class="form-horizontal" role="form" th:object="${registerForm}" th:action="@{/register}" method="post" >
                 <div class="form-group text-center">
                     <div class="col-sm-10 reg-icon">
-                        <span class="fa fa-user fa-3x"> Đăng ký</span>
+                        <span class="fa fa-user fa-3x">ĐĂNG KÝ</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="userName" placeholder="User Name" required th:field="*{username}">
+                        <input type="text" class="form-control" id="userName" placeholder="TÊN ĐĂNG NHẬP" required th:field="*{username}">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="password" placeholder="Password" required th:field="*{password}">
+                        <input type="password" class="form-control" id="password" placeholder="MẬT KHẨU" required th:field="*{password}">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" id="confirmPass" placeholder="Confirm Password" required>
+                        <input type="password" class="form-control" id="confirmPass" placeholder="XÁC NHẬN MẬT KHẨU" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" id="phoneNumber" placeholder="PhoneNumber" required th:field="*{phoneNumber}">
+                        <input type="number" class="form-control" id="phoneNumber" placeholder="SỐ ĐIỆN THOẠI" required th:field="*{phoneNumber}">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-10">
                         <button type="button" class="btn btn-info" >
                             <span class="glyphicon glyphicon-share-alt"></span>
-                            Register
+                            ĐĂNG KÝ
                         </button>
                     </div>
                 </div>

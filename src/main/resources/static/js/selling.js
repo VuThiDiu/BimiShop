@@ -7,9 +7,6 @@ function SellingController(){
 
                 // load for autoTaggingSystemToken
                 var urlPath = $('#autoTaggingSystemPath').val();
-                var autoTaggingSystemToken = JSON.parse(localStorage.getItem("autoTaggingSystemToken"));
-
-
                 let fileInput = document.getElementById("file-input");
                 let imageContainer = document.getElementById("images");
                 let numOfFiles = document.getElementById("num-of-files");
@@ -49,7 +46,7 @@ function SellingController(){
 //                                    $("#preview").attr("src", imageURL);
                                     let formData = new FormData();
                                     formData.append("file", i);
-                                    SellingController.prototype.AutoTaggingAPI(formData, autoTaggingSystemToken, urlPath, img,  figCap, figCapColor);
+                                    SellingController.prototype.AutoTaggingAPI(formData, loginResponse, urlPath, img,  figCap, figCapColor);
                             }
                     }else{
                         alert("At most 10 files at times");
@@ -273,12 +270,12 @@ SellingController.prototype.tagController = function(){
        }
 
 // using json
-SellingController.prototype.AutoTaggingAPI = function(fileInput, autoTaggingSystemToken,urlPath , image,  figCap, figCapColor){
+SellingController.prototype.AutoTaggingAPI = function(fileInput, loginResponse,urlPath , image,  figCap, figCapColor){
     $.ajax({
             method:"post",
             url: urlPath,
             headers:{
-                "Authorization": `Bearer ${autoTaggingSystemToken.accessToken}`,
+                "Authorization": `Bearer ${loginResponse.accessTokenAutomaticTaggingSystem}`,
                 "Accept" : "application/json"
             },
 
@@ -313,9 +310,9 @@ function getColor(color){
         case "đen" : return "black";
         case "xanh lá" : return "green";
     }
-
-
 }
+
+
 var sellingController;
 $(document).ready(function(){
     sellingController = new SellingController();
